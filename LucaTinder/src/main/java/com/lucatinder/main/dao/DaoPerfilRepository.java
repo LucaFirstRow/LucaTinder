@@ -10,7 +10,12 @@ import org.springframework.stereotype.Repository;
  *permite facilitar los algoritmos entre la comunicacion de BBDD
  *y los metodos.
  */
+
 /*@Repository
+=======
+
+@Repository
+>>>>>>> refs/heads/Development
 public interface DaoPerfilRepository extends JpaRepository<Perfil,Integer>DaoPerfil{
 
 }*/
