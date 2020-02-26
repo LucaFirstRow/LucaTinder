@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * 
  * @author Equipo1
- * 
  *La clase DaoPerfilImp implementa los
  *metodos para modificar los datos
  *
