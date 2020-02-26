@@ -12,10 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 
 /*@Repository
-=======
-
-@Repository
->>>>>>> refs/heads/Development
 public interface DaoPerfilRepository extends JpaRepository<Perfil,Integer>DaoPerfil{
 
 }*/
