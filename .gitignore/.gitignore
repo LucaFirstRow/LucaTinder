@@ -1,8 +1,0 @@
-*.clas
-
-#Eclipse files
-**/.project
-**/.classpath
-**/.settings/
-blog/bin/
-**/.tern-project
