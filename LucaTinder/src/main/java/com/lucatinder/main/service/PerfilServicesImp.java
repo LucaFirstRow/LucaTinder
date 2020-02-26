@@ -14,8 +14,8 @@ public class PerfilServicesImp implements PerfilServices {
 	private DaoPerfilRepository Usuario;
 	@Override
 	/**
-	 * Metodo addPerfil con entrada un objecto
-	 * Perfil para añadir un nuevo usuario.
+	 * Metodo addPerfil como parametro de entrada un objecto
+	 * Perfil. La funcionalidad es añadir un nuevo usuario.
 	 */
 	public void addPerfil(Perfil perfil) {
 		Usuario.save(perfil);
