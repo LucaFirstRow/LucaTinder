@@ -1,4 +1,4 @@
-package com.lucatinder.dao;
+package com.lucatinder.main.dao;
 
 public interface DaoPerfil {
 	
