@@ -12,6 +12,8 @@ import org.springframework.ui.ModelMap;
 
 import java.util.List;
 import java.util.ArrayList;
+
+
 import com.lucatinder.main.modelo.Perfil;
 import com.lucatinder.main.service.PerfilServices;
 /**
@@ -44,6 +46,14 @@ public class PerfilController {
 	 * @param perfil
 	 * @return pagina /perfil/add
 	 */
+	
+	@GetMapping("/addPerfilForm")
+	 public String addPerfilForm(@ModelAttribute("perfil")Perfil perfil) {
+	    
+	    return "addPerfil";
+	  }
+	
+	
 	@PostMapping("/add")
 	public ModelAndView addPerfil(@ModelAttribute Perfil perfil) {
 		
