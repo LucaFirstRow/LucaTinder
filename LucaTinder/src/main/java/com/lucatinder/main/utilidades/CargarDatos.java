@@ -62,6 +62,7 @@ public class CargarDatos {
 		}
 		
 
+
 	    System.out.println("Perfil insertado");
 		
 }
@@ -70,4 +71,6 @@ public class CargarDatos {
 	
 	
 }
+
+
 
