@@ -49,10 +49,10 @@ public class PerfilServicesImp implements PerfilServices {
 	 * @param int id identificador del usuario
 	 * @return List<Perfil> Devuelve una Lista de perfiles
 	 */
-	public List<Perfil> mostrarSeleccion(int id){
+	/*public List<Perfil> mostrarSeleccion(int id){
 		
 		Optional<Perfil> usuario=findOne(id);
 		return Usuario.mostrarSeleccion(usuario.get().getGenero());
-	}
+	}*/
 
 }

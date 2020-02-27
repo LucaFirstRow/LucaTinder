@@ -3,7 +3,7 @@ body{
     margin: 0;
     font-family: 'Poppins';
     color: azure;
-    background-image: url(images/fondoIndex3.jpg);
+    background-image: url(/resources/images/fondoIndex3.jpg);
     background-size: cover;
     min-height: 100vh;
 }
@@ -109,7 +109,7 @@ label{
 @media (max-width: 574px) {
    
     #content{
-        background-image: url(images/fondoMovIndex.jpg);
+        background-image: url(resources/images/fondoMovIndex.jpg);
         background-size: contain;
         min-height: 100vh;
     }
