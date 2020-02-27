@@ -14,14 +14,15 @@ public class CargarDatos {
 	@Autowired
 	private ArrayList<Object> perfiles;
 	
+	@Autowired
 	private Perfil perfil;
 	
 	@Autowired
 	private Faker faker;
 	
-	public void cargarDatos() {
+	public String cargarDatos() {
 		
-		
+		return "prueba";
 	}
 	
 	public ArrayList<Object> generarPerfiles(){
@@ -40,7 +41,7 @@ public class CargarDatos {
 		}
 		
 		
-		return null;
+		return perfiles;
 	}
 
 }

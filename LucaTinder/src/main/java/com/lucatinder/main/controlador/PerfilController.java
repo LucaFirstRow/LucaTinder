@@ -21,9 +21,8 @@ public class PerfilController {
 	private static final Logger logger=LoggerFactory.getLogger(PerfilController.class);
 	
 	@PostMapping("/add")
-	public ModelAndView addPerfil(@ModelAttribute Perfil perfil) {
+	public ModelAndView addPerfil() {
 		logger.info(" Estoy en addPerfil");
-		service.addPerfil(perfil);
-		return new ModelAndView("redirect:/Perfil");
+		return new ModelAndView("redirect:/index.html");
 	}
 }
