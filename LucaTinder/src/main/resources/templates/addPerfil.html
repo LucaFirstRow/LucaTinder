@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Pacifico|Poppins:400,700i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>LucaTinder</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row h-100 fullHeigthRow">
+            <div class="col-8">
+                <header class="header">
+                    <img class="logo" src="images/logo.png">  
+                    <h1 class="title mt-4">Alta de nuevos Usuarios</h1>
+                </header>
+            </div>
+            <div class="col-12 addForm">
+                <form method="post" 
+				th:object="${perfil}"
+				th:action="@{/perfil/add}">
+                <div class="form-group comicGruop col-8">
+                    <div class="col-6 pr-3 p-0 m-0">
+                        <input type="text" placeholder="Nombre Apellidos" name="nombre" id="nombre" th:field="*{nombre}/>
+                    </div>
+                    <div class="col-6 p-0 m-0">
+                        <input type="text" placeholder="Edad" name="edad" id="edad" th:field="*{edad}/>
+                    </div>
+                 
+                    <div class="col-6 pr-3 p-0 m-0">
+                        <input type="text" placeholder="User Name" name="userName" id="userName"/>
+                    </div>
+                    <div class="col-6 p-0 m-0">
+                        <input type="password" placeholder="Password" name="password" id="password"/>
+                    </div>
+                    <div class="col-6 p-0 m-0 radioBtnCont d-flex">
+                    <select th:field="*{genero}">
+					  <option 
+					      th:each="dropdownValue: ${singleSelectAllValues}"
+					      th:value="${dropdownValue}"
+					      th:text="${dropdownValue}" ></option>
+					</select>
+                    
+                    
+                    <!--
+                        <div class="col-6 p-0 d-flex">
+                            <label for="male"  class="radioLab pr-2">Male</label>
+                            <input type="radio" class="radioBtn" id="male" name="genero" value="1" th:field="*{genero}">
+                            <label for="female" class="radioLab pr-2 ml-2">Female</label>
+                            <input type="radio" id="female"  class="radioBtn" name="genero" value="2" th:field="*{genero}">
+                        </div>
+                    -->
+                    </div>
+                </div>
+                <div class="col-6 p-0 m-0">
+                        <input class="btn btn-custom2 col-3" type="submit" name="addPerfilBtn" id="addPerfilBtn"/>
+                </div>
+            </form>
+            </div>
+       
+        <!--   
+        </div>
+            <div class="col-6">
+                <img src="/images/fondoMovIndex.jpg"/>
+            </div>
+        </div>   -->
+    </div>
+</body>
+</html>
