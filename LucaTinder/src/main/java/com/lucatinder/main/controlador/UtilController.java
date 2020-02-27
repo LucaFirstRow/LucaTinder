@@ -1,4 +1,4 @@
-package com.lucatic.main.controlador;
+package com.lucatinder.main.controlador;
 
 import org.springframework.stereotype.Controller;
 
