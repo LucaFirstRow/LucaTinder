@@ -9,9 +9,8 @@ import com.lucatinder.main.modelo.Perfil;
 /**
  * 
  * @author Equipo1 
- *La clase interface DaoPerfilRepository herede de JpaRepository
- *permite facilitar los algoritmos entre la comunicacion de BBDD
- *y los metodos.
+ *La clase interface DaoPerfilRepository hereda de JpaRepository y
+ *permite facilitar los algoritmos para la comunicacion de la BBDD.
  */
 @Repository
 public interface DaoPerfilRepository extends JpaRepository<Perfil,Integer>, DaoPerfil {
