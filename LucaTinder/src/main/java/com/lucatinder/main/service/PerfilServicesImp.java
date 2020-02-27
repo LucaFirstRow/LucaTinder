@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.lucatinder.main.dao.DaoPerfilRepository;
-
+import java.util.Optional;
 /**
  * 
  * @author Equipo 1
@@ -31,6 +31,15 @@ public class PerfilServicesImp implements PerfilServices {
 	 */
 	public void addPerfil(Perfil perfil) {
 		Usuario.save(perfil);
+	}
+	/**
+	 * Metodo findOne busca al usuario por el id
+	 * y devuelve su informacion
+	 * @param int id
+	 * @return Perfil
+	 */
+	public Optional<Perfil> findOne(int id){
+		return Usuario.findById(id);
 	}
 
 }
