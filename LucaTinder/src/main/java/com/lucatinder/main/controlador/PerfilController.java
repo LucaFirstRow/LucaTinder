@@ -73,7 +73,8 @@ public class PerfilController {
 		logger.info("Muestrame perfiles");
 		List<Perfil> listas=new ArrayList<Perfil>();
 		System.out.println("Estoy en mostrarSeleccion *******************");
-		listas=service.mostrarSeleccion(p.getIdPerfil());
+		//listas=service.mostrarSeleccion(p.getIdPerfil());
+		listas=service.mostrarSeleccion(20);
 		model.addAttribute("listas", listas);
 		return "list"; 
 		
