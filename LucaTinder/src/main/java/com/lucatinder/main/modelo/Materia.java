@@ -1,6 +1,7 @@
 package com.lucatinder.main.modelo;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -34,7 +35,7 @@ public class Materia {
 	    		mappedBy = "arrayMateria", 
 	    		fetch = FetchType.LAZY, 
 	    		cascade = CascadeType.ALL)
-	private ArrayList<Perfil> arrayPerfil;
+	private List<Perfil> arrayPerfil;
 
 
 	public int getIdMateria() {
@@ -57,12 +58,12 @@ public class Materia {
 	}
 
 
-	public ArrayList<Perfil> getArrayPerfil() {
+	public List<Perfil> getArrayPerfil() {
 		return arrayPerfil;
 	}
 
 
-	public void setArrayPerfil(ArrayList<Perfil> arrayPerfil) {
+	public void setArrayPerfil(List<Perfil> arrayPerfil) {
 		this.arrayPerfil = arrayPerfil;
 	}
 
