@@ -72,7 +72,7 @@ public class PerfilController {
 	public String mostrarSeleccion(ModelMap model,Perfil p) {
 		logger.info("Muestrame perfiles");
 		List<Perfil> listas=new ArrayList<Perfil>();
-		System.out.println("Estoy en mostrarSeleccion *******************");
+		System.out.println("Estoy en mostrarSeleccion *************************");
 		//listas=service.mostrarSeleccion(p.getIdPerfil());
 		listas=service.mostrarSeleccion(20);
 		model.addAttribute("listas", listas);
