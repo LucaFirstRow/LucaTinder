@@ -25,11 +25,11 @@ import com.lucatinder.main.modelo.Materia;
  *
  */
 @Entity
-@Table(name = "persona")
+@Table(name = "perfil")
 public class Perfil {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPerfil;
 	private String nombre;
 	private int genero;

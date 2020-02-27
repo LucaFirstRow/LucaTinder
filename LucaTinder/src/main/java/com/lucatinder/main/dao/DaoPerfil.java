@@ -9,5 +9,5 @@ import com.lucatinder.main.modelo.Perfil;
  */
 public interface DaoPerfil {
 	
-	public List<Perfil> mostrarSeleccion(int genero);
+	//public List<Perfil> mostrarSeleccion(int genero);
 }

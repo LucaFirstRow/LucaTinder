@@ -46,11 +46,20 @@ public class PerfilController {
 	 * @param perfil
 	 * @return pagina /perfil/add
 	 */
+
+	@GetMapping("/addPerfilForm")
+	 public String addPerfilForm(@ModelAttribute("perfil")Perfil perfil) {
+	    System.out.println("ENTRA ************************************************");
+	    return "addPerfil";
+	  }
 	
+	
+	@PostMapping("/add")
 	public ModelAndView addPerfil(@ModelAttribute Perfil perfil) {
 
-		logger.info(" Estoy en addPerfil");
-		return new ModelAndView("redirect:/index.html");
+		service.addPerfil(perfil);
+		return new ModelAndView("redirect:/index");
+
 	}
 	/**
 	 * Metodo mostrarSeleccion muestra una lista de perfiles
@@ -59,8 +68,8 @@ public class PerfilController {
 	 * @param p Perfil
 	 * @return la pagina 
 	 */
-	@GetMapping("/list")
-	public String mostrarSeleccion(ModelMap model,Perfil p) {
+	//@GetMapping("/list")
+	/*public String mostrarSeleccion(ModelMap model,Perfil p) {
 		logger.info("Muestrame perfiles");
 		List<Perfil> listas=new ArrayList<Perfil>();
 		listas=service.mostrarSeleccion(p.getIdPerfil());
@@ -69,7 +78,7 @@ public class PerfilController {
 		
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
-	}
+	}*/
 			
 			
 }
