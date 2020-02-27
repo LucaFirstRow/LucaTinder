@@ -65,7 +65,6 @@ public class PerfilController {
 		listas=service.mostrarSeleccion(p.getIdPerfil());
 		model.addAttribute("listas", listas);
 		return "list"; 
-		
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
 	}
