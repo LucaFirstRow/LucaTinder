@@ -1,4 +1,6 @@
 package com.lucatinder.main.service;
+
+import java.util.Optional;
 import com.lucatinder.main.modelo.Perfil;
 /**
  * 
@@ -9,5 +11,6 @@ import com.lucatinder.main.modelo.Perfil;
  */
 public interface PerfilServices {
 
-	void addPerfil(Perfil perfil);
+	public void addPerfil(Perfil perfil);
+	public Optional<Perfil> findOne(int id);
 }

@@ -42,6 +42,7 @@ public class PerfilController {
 	 */
 	@PostMapping("/add")
 	public ModelAndView addPerfil(@ModelAttribute Perfil perfil) {
+		
 		logger.info(" Estoy en addPerfil");
 		service.addPerfil(perfil);
 		return new ModelAndView("redirect:/Perfil");
