@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.ModelMap;
 
+import java.util.List;
+import java.util.ArrayList;
 import com.lucatinder.main.modelo.Perfil;
 import com.lucatinder.main.service.PerfilServices;
 /**
@@ -47,4 +51,23 @@ public class PerfilController {
 		service.addPerfil(perfil);
 		return new ModelAndView("redirect:/Perfil");
 	}
+	/**
+	 * Metodo mostrarSeleccion muestra una lista de perfiles
+	 * en la pagina
+	 * @param model ModelMap
+	 * @param p Perfil
+	 * @return la pagina 
+	 */
+	@GetMapping("/list")
+	public String mostrarSeleccion(ModelMap model,Perfil p) {
+		logger.info("Muestrame perfiles");
+		List<Perfil> listas=new ArrayList<Perfil>();
+		listas=service.mostrarSeleccion(p.getIdPerfil());
+		model.addAttribute("listas", listas);
+		return "list"; 
+		//Pagina donde muestra los perfiles
+		//no se especifica como se llama la imagen
+	}
+			
+			
 }

@@ -1,5 +1,7 @@
 package com.lucatinder.main.dao;
 
+import java.util.List;
+import com.lucatinder.main.modelo.Perfil;
 /**
  * 
  * @author Equipo1
@@ -7,5 +9,5 @@ package com.lucatinder.main.dao;
  */
 public interface DaoPerfil {
 	
-
+	public List<Perfil> mostrarSeleccion(int genero);
 }

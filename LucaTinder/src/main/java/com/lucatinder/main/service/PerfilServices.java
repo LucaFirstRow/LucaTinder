@@ -2,6 +2,7 @@ package com.lucatinder.main.service;
 
 import java.util.Optional;
 import com.lucatinder.main.modelo.Perfil;
+import java.util.List;
 /**
  * 
  * @author Equipo 1 
@@ -13,4 +14,5 @@ public interface PerfilServices {
 
 	public void addPerfil(Perfil perfil);
 	public Optional<Perfil> findOne(int id);
+	public List<Perfil> mostrarSeleccion(int id);
 }
