@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 import com.lucatinder.main.modelo.Materia;
@@ -23,7 +26,6 @@ import com.lucatinder.main.modelo.Materia;
  */
 @Entity
 @Table(name = "persona")
-
 public class Perfil {
 
 	@Id

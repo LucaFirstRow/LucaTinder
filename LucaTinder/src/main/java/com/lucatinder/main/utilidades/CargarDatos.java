@@ -2,8 +2,12 @@ package com.lucatinder.main.utilidades;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.javafaker.Faker;
 import com.lucatinder.main.modelo.Perfil;
@@ -11,13 +15,12 @@ import com.lucatinder.main.modelo.Perfil;
 @Repository
 public class CargarDatos {
 	
-	@Autowired
-	private ArrayList<Object> perfiles;
+	 @PersistenceContext
+	  private EntityManager entityManager;
 	
-	@Autowired
+	/*@Autowired
 	private Perfil perfil;
-	
-	@Autowired
+
 	private Faker faker;
 	
 	public String cargarDatos() {
@@ -26,6 +29,8 @@ public class CargarDatos {
 	}
 	
 	public ArrayList<Object> generarPerfiles(){
+		
+		ArrayList<Object> perfiles = new ArrayList<Object>();
 		
 		int genero = (int)(Math.random()*1)+1;
 		int edad = (int) (Math.floor(Math.random() * (70 - 18 + 1)) + 18);
@@ -41,7 +46,15 @@ public class CargarDatos {
 		}
 		
 		
-		return perfiles;
-	}
-
+		return perfiles;*/
+	
+	/*@Transactional
+	public void insertWithQuery() {
+	    entityManager.createNativeQuery("INSERT INTO perfil (nombre) VALUES (?)")
+	      .setParameter(1, "prueba").executeUpdate();
+	}*/
+	
+	
+	
 }
+
