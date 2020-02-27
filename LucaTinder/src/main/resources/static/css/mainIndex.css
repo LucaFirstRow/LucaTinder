@@ -45,7 +45,7 @@ form{
     color: white;
 }
 #content{
-    background-image: url(images/fondoIndex2.jpg);
+    background-image: url(../images/fondoIndex2.jpg);
     width: 100vw;
     height: 100vh;
     background-size: cover;
@@ -78,7 +78,7 @@ form{
 @media (max-width: 574px) {
    
     #content{
-        background-image: url(images/fondoMovIndex.jpg);
+        background-image: url(../images/fondoMovIndex.jpg);
         background-size: contain;
     }
     .aboutApp{
