@@ -14,5 +14,5 @@ public interface PerfilServices {
 
 	public void addPerfil(Perfil perfil);
 	public Optional<Perfil> findOne(int id);
-	//public List<Perfil> mostrarSeleccion(int id);
+	public List<Perfil> mostrarSeleccion(int id);
 }

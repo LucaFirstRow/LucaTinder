@@ -1,13 +1,18 @@
 package com.lucatinder.main.dao;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+
 import com.lucatinder.main.modelo.Perfil;
+
 /**
  * 
- * @author Equipo1
- *La clase DaoPerfil es la interfaz de los datos
+ * @author Equipo1 
+ *La clase interface DaoPerfilRepository hereda de JpaRepository y
+ *permite facilitar los algoritmos para la comunicacion de la BBDD.
  */
-public interface DaoPerfil {
-	
-	//public List<Perfil> mostrarSeleccion(int genero);
+@Repository
+public interface DaoPerfil extends JpaRepository<Perfil,Integer>, DaoPerfilCustom {
+
 }

@@ -14,7 +14,7 @@ import com.lucatinder.main.modelo.Perfil;
  *
  */
 @Repository
-public class DaoPerfilImp implements DaoPerfil {
+public class DaoPerfilImpl implements DaoPerfilCustom {
 
 	@PersistenceContext 
 	EntityManager entityManager;
