@@ -10,7 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
+import java.util.List;
+
 import com.lucatinder.main.modelo.Materia;
 
 /**
@@ -42,7 +43,7 @@ public class Perfil {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 
-	private ArrayList<Materia> arrayMateria;
+	private List<Materia> arrayMateria;
 
 	public int getIdPerfil() {
 		return idPerfil;
@@ -108,11 +109,11 @@ public class Perfil {
 		this.foto = foto;
 	}
 
-	public ArrayList<Materia> getArrayMaterias() {
+	public List<Materia> getArrayMaterias() {
 		return arrayMateria;
 	}
 
-	public void setArrayMaterias(ArrayList<Materia> arrayMaterias) {
+	public void setArrayMaterias(List<Materia> arrayMaterias) {
 		this.arrayMateria = arrayMaterias;
 	}
 
