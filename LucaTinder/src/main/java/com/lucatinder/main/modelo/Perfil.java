@@ -1,5 +1,12 @@
 package com.lucatinder.main.modelo;
 
+
+/**
+ * @author Equipo 1
+ * Esta es nuestra clase entidad. En esta clase se aporta 
+ * datos del usuario:nombre,genero,id,edad...
+ * 
+ */
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
