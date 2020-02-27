@@ -28,12 +28,10 @@
             </div>
             <div class="col-8 getInFormFirstGruop">
                 <div class="col-12 col-md-6 col-lg-4">
-                <form method="post" 
-				th:object="${perfil}"
-				th:action="@{/login}" class="" id="loginForm" name="loginForm">
+                <form method="post"class="" id="loginForm" name="loginForm">
                         <div class="form-group col-12">
-                            <input class="inputCustom" placeholder="User Name" type="text" class="form" id="user" name="user" th:field="*{userName}"/>
-                            <input class="inputCustom" placeholder="Password" type="password" value="" id="password" name="password" th:field="*{password}"/>
+                            <input class="inputCustom" placeholder="User Name" type="text" id="user" name="user" />
+                            <input class="inputCustom" placeholder="Password" type="password" value="" id="password" name="password"/>
                         </div>
                         <div class="form-group col-12">
                             <input type="submit" class="btn btn-custom col-8" value="Get In" id="getIn" name="getIn"/>

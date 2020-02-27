@@ -17,8 +17,7 @@ class LucaTinderApplicationTests {
 	@Test
 	void contextLoads() {
 
-		System.out.println(datos.cargarDatos());
-		
+
 	}
 
 }

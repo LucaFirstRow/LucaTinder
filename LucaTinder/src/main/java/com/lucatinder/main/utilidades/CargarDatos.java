@@ -11,48 +11,61 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.javafaker.Faker;
 import com.lucatinder.main.modelo.Perfil;
+import com.lucatinder.main.service.PerfilServicesImp;
+
+
+/**
+ * @author Equipo1
+ * 
+ * Esta clase realiza la insercion de perfiles aleactorios cuando carga se carga la pagina inicial
+ *
+ */
 
 @Repository
 public class CargarDatos {
 	
 	 @PersistenceContext
-	  private EntityManager entityManager;
+	 private EntityManager entityManager;
+	 
+	 @Autowired
+	 PerfilServicesImp prueba;
 	
-	/*@Autowired
-	private Perfil perfil;
 
-	private Faker faker;
-	
-	public String cargarDatos() {
+	 /**
+	  * @author Equipo1
+	  * 
+	  * Esta clase realiza la insercion de perfiles aleactorios cuando carga la pagina inicial
+	  *
+	  */	
+	public void generarPerfiles(){
 		
-		return "prueba";
-	}
-	
-	public ArrayList<Object> generarPerfiles(){
+		Perfil perfiles = new Perfil();
+		Faker faker = new Faker();
 		
-		ArrayList<Object> perfiles = new ArrayList<Object>();
-		
-		int genero = (int)(Math.random()*1)+1;
-		int edad = (int) (Math.floor(Math.random() * (70 - 18 + 1)) + 18);
+		int genero = 0;
+		int edad = 0;
 		
 		for(int i = 0;i<20;i++) {
+			
+			genero = (int)(Math.random()*1)+1;
+			edad = (int) (Math.floor(Math.random() * (70 - 18 + 1)) + 18);
 		
-		perfiles.add(faker.artist().name());
-		perfiles.add(faker.name().firstName());
-		perfiles.add(genero);
-		perfiles.add(edad);
-		perfiles.add(faker.address().city());
-		
+			perfiles.setGenero(genero);
+			perfiles.setEdad(edad);
+			perfiles.setDescripcion("xxxxxxxxxxx");
+			perfiles.setFoto("url");
+			perfiles.setNombre(faker.artist().name());
+			perfiles.setDescripcionCorta("yyyyyyyyyyyyyyyy");
+			perfiles.setPoblacion(faker.address().city());
+			
+			prueba.addPerfil(perfiles);
 		}
 		
+
+	    System.out.println("Perfil insertado");
 		
-		return perfiles;*/
-	
-	/*@Transactional
-	public void insertWithQuery() {
-	    entityManager.createNativeQuery("INSERT INTO perfil (nombre) VALUES (?)")
-	      .setParameter(1, "prueba").executeUpdate();
-	}*/
+}
+
 	
 	
 	

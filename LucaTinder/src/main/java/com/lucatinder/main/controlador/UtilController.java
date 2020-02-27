@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.lucatinder.main.utilidades.CargarDatos;
 
 
-@Controller("/util")
+@Controller
 public class UtilController {
 	
 	@Autowired
@@ -22,10 +22,10 @@ public class UtilController {
 	@RequestMapping(value = "/cargardatos", method = RequestMethod.GET)
 	public String cargarDatos() {
 		
-	
 		
 		return "index";		
 	}
+	
 	
 	@ModelAttribute("multiCheckboxAllValues")
 	public String[] getMultiCheckboxAllValues() {
