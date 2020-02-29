@@ -1,0 +1,94 @@
+body{
+    background-color: cadetblue;
+    margin: 0;
+    font-family: 'Poppins';
+    color: azure;
+}
+a:hover{
+    text-decoration: none;
+}
+.title{
+    color: azure;
+    font-family: 'Pacifico';
+}
+p{
+    font-family: 'Poppins';
+    font-size: large;
+    color: white;
+}
+.inputCustom{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: white;
+    line-height: 1.2;
+    display: block;
+    width: 100%;
+    background: transparent;
+    padding: 0 5px;
+    outline: none;
+    border: none;
+    border-bottom:1px solid #eb4e65;
+    padding-bottom: 2px;
+    margin-bottom: inherit;
+}
+.btn-custom{
+    background-color: #6cb8a1 !important;
+    color: aliceblue !important;
+}
+.nuevoRegistro a{
+    color: #eb4e65;
+    font-family: 'Poppins';
+    font-size: small;
+    text-align: right;
+}
+form{
+    color: white;
+}
+#content{
+    background-image: url(../images/fondoIndex2.jpg);
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+}
+.fullHeigthRow{
+    height: 100%;
+}
+.header{
+    padding-top: 50px;
+    padding-left:50px;
+} 
+.logo{
+    width: 250px;
+}
+.aboutApp{
+    padding-left: 50px !important;
+}
+
+
+.getInFormFirstGruop{
+  /*background-color: aquamarine;*/
+  justify-content: center;
+  align-content: flex-end;
+}
+
+.btnGetInForm{
+    justify-content: flex-end;
+}
+
+@media (max-width: 574px) {
+   
+    #content{
+        background-image: url(../images/fondoMovIndex.jpg);
+        background-size: contain;
+    }
+    .aboutApp{
+        padding-left:0;
+        padding-right: 0;
+        padding-top: 1em;
+    }
+    .fullHeigthRow{
+        justify-content: center;
+    }
+}
+
+

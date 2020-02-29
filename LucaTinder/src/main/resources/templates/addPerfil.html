@@ -14,6 +14,7 @@
 </head>
 <body>
     <div class="container-fluid">
+        <div class="fondo"></div>
         <div class="row h-100 fullHeigthRow">
             <div class="col-8">
                 <header class="header">
@@ -39,23 +40,11 @@
                     <div class="col-6 p-0 m-0">
                         <input type="password" placeholder="Password" name="password" id="password"/>
                     </div>
-                    <div class="col-6 p-0 m-0 radioBtnCont d-flex">
-                    <select th:field="*{genero}">
-					  <option 
-					      th:each="dropdownValue: ${singleSelectAllValues}"
-					      th:value="${dropdownValue}"
-					      th:text="${dropdownValue}" ></option>
-					</select>
-                    
-                    
-                    <!--
-                        <div class="col-6 p-0 d-flex">
-                            <label for="male"  class="radioLab pr-2">Male</label>
-                            <input type="radio" class="radioBtn" id="male" name="genero" value="1" th:field="*{genero}">
-                            <label for="female" class="radioLab pr-2 ml-2">Female</label>
-                            <input type="radio" id="female"  class="radioBtn" name="genero" value="2" th:field="*{genero}">
-                        </div>
-                    -->
+                    <div class="col-6 p-0 d-flex">
+                        <label for="male"  class="radioLab pr-2">Male</label>
+                        <input type="radio" class="radioBtn" id="male" name="genero" value="1" th:checked="*{genero}">
+                        <label for="female" class="radioLab pr-2 ml-2">Female</label>
+                        <input type="radio" id="female"  class="radioBtn" name="genero" value="2" th:checked="*{genero}">
                     </div>
                 </div>
                 <div class="col-6 p-0 m-0">
