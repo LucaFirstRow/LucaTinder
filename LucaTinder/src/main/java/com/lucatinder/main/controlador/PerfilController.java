@@ -56,7 +56,7 @@ public class PerfilController {
 	
 	@PostMapping("/add")
 	public ModelAndView addPerfil(@ModelAttribute Perfil perfil) {
-
+		perfil.setFoto("/resources/images/perfil/sinfoto.png");// Se le asigna una foto por defecto que es sin foto
 		service.addPerfil(perfil);
 		return new ModelAndView("redirect:/index");
 
