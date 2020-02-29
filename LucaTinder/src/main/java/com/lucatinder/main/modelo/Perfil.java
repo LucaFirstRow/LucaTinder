@@ -9,11 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
+
 
 import java.util.List;
+import java.util.Set;
+
 
 import com.lucatinder.main.modelo.Materia;
 
@@ -47,6 +50,12 @@ public class Perfil {
 
 	private List<Materia> arrayMateria;
 
+	
+	@OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idPerfil")
+    private Set<Contactos> contactos;
+	
+	
 	public int getIdPerfil() {
 		return idPerfil;
 	}
