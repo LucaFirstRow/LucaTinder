@@ -14,8 +14,6 @@
 </head>
 <body>
     <div class="fondo"></div>
-    
-    
     <div class="wrapper d-flex">
             <nav class="sideNav">
                     <ul class="list-unstyled components menuHorizontal mb-5">
@@ -61,166 +59,26 @@
                 <h1 class="title text-center">Perfiles</h1>
             </div>
             <div class="row mt-4">
-                <div class=" col-sm-12 col-lg-6 mb-2">
+                <div th:each="current_perfil : ${listas}" class=" col-sm-12 col-lg-6 mb-2">
                     <div class="cardPerfil col-12">
                         <div class="col-3 p-0"><img src="images/perfil/h4.jpg" class="imgCard" alt="..."></div>
                         <div class="col-9 p-0">
                             <div class="p-2">
                                 <div class="col-12 d-flex">
-                                <div class="col-6"><h5 class="card-title">Mi nombre</h5></div>
-                                <div class="col-6">25 </div>
+                                <div class="col-6"><h5 class="card-title" th:text="${current_perfil.nombre}"></h5></div>
+                                <div class="col-6" th:text="${current_perfil.nombre}"> </div>
                                 </div>
                                 <div class="col-12">
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sint voluptatibus odit.</p>
+                                    <p class="card-text" th:text="${current_perfil.descripcion_corta}"></p>
                                 </div>  
                             </div>
                             <div class="col-12 botonera">
-                                <div class="col-6 botonetaDisLike"><a href="#"  class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
-                                <div class="col-6 botonetaLike"><a href="#" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
+                                <div class="col-6 botonetaDisLike"><a href="" class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
+                                <div class="col-6 botonetaLike"><a th:href="@{/perfil/addContacto(id_usuario=${book.id_book})(id_perfilLike=${current_perfi.id})}" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class=" col-sm-12 col-lg-6 mb-2">
-                    <div class="cardPerfil col-12">
-                        <div class="col-3 p-0"><img src="images/perfil/h4.jpg" class="imgCard" alt="..."></div>
-                        <div class="col-9 p-0">
-                            <div class="p-2">
-                                <div class="col-12 d-flex">
-                                <div class="col-6"><h5 class="card-title">Mi nombre</h5></div>
-                                <div class="col-6">25 </div>
-                                </div>
-                                <div class="col-12">
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sint voluptatibus odit.</p>
-                                </div>  
-                            </div>
-                            <div class="col-12 botonera">
-                                <div class="col-6 botonetaDisLike"><a href="#"  class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
-                                <div class="col-6 botonetaLike"><a href="#" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                <div class=" col-sm-12 col-lg-6 mb-2">
-                    <div class="cardPerfil col-12">
-                        <div class="col-3 p-0"><img src="images/perfil/h4.jpg" class="imgCard" alt="..."></div>
-                        <div class="col-9 p-0">
-                            <div class="p-2">
-                                <div class="col-12 d-flex">
-                                <div class="col-6"><h5 class="card-title">Mi nombre</h5></div>
-                                <div class="col-6">25 </div>
-                                </div>
-                                <div class="col-12">
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sint voluptatibus odit.</p>
-                                </div>  
-                            </div>
-                            <div class="col-12 botonera">
-                                <div class="col-6 botonetaDisLike"><a href="#"  class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
-                                <div class="col-6 botonetaLike"><a href="#" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-sm-12 col-lg-6 mb-2">
-                    <div class="cardPerfil col-12">
-                        <div class="col-3 p-0"><img src="images/perfil/h4.jpg" class="imgCard" alt="..."></div>
-                        <div class="col-9 p-0">
-                            <div class="p-2">
-                                <div class="col-12 d-flex">
-                                <div class="col-6"><h5 class="card-title">Mi nombre</h5></div>
-                                <div class="col-6">25 </div>
-                                </div>
-                                <div class="col-12">
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sint voluptatibus odit.</p>
-                                </div>  
-                            </div>
-                            <div class="col-12 botonera">
-                                <div class="col-6 botonetaDisLike"><a href="#"  class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
-                                <div class="col-6 botonetaLike"><a href="#" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-sm-12 col-lg-6 mb-2">
-                    <div class="cardPerfil col-12">
-                        <div class="col-3 p-0"><img src="images/perfil/h4.jpg" class="imgCard" alt="..."></div>
-                        <div class="col-9 p-0">
-                            <div class="p-2">
-                                <div class="col-12 d-flex">
-                                <div class="col-6"><h5 class="card-title">Mi nombre</h5></div>
-                                <div class="col-6">25 </div>
-                                </div>
-                                <div class="col-12">
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sint voluptatibus odit.</p>
-                                </div>  
-                            </div>
-                            <div class="col-12 botonera">
-                                <div class="col-6 botonetaDisLike"><a href="#"  class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
-                                <div class="col-6 botonetaLike"><a href="#" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-sm-12 col-lg-6 mb-2">
-                    <div class="cardPerfil col-12">
-                        <div class="col-3 p-0"><img src="images/perfil/h4.jpg" class="imgCard" alt="..."></div>
-                        <div class="col-9 p-0">
-                            <div class="p-2">
-                                <div class="col-12 d-flex">
-                                <div class="col-6"><h5 class="card-title">Mi nombre</h5></div>
-                                <div class="col-6">25 </div>
-                                </div>
-                                <div class="col-12">
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sint voluptatibus odit.</p>
-                                </div>  
-                            </div>
-                            <div class="col-12 botonera">
-                                <div class="col-6 botonetaDisLike"><a href="#"  class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
-                                <div class="col-6 botonetaLike"><a href="#" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                <div class=" col-sm-12 col-lg-6 mb-2">
-                    <div class="cardPerfil col-12">
-                        <div class="col-3 p-0"><img src="images/perfil/h4.jpg" class="imgCard" alt="..."></div>
-                        <div class="col-9 p-0">
-                            <div class="p-2">
-                                <div class="col-12 d-flex">
-                                <div class="col-6"><h5 class="card-title">Mi nombre</h5></div>
-                                <div class="col-6">25 </div>
-                                </div>
-                                <div class="col-12">
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sint voluptatibus odit.</p>
-                                </div>  
-                            </div>
-                            <div class="col-12 botonera">
-                                <div class="col-6 botonetaDisLike"><a href="#"  class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
-                                <div class="col-6 botonetaLike"><a href="#" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-sm-12 col-lg-6 mb-2">
-                    <div class="cardPerfil col-12">
-                        <div class="col-3 p-0"><img src="images/perfil/h4.jpg" class="imgCard" alt="..."></div>
-                        <div class="col-9 p-0">
-                            <div class="p-2">
-                                <div class="col-12 d-flex">
-                                <div class="col-6"><h5 class="card-title">Mi nombre</h5></div>
-                                <div class="col-6">25 </div>
-                                </div>
-                                <div class="col-12">
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sint voluptatibus odit.</p>
-                                </div>  
-                            </div>
-                            <div class="col-12 botonera">
-                                <div class="col-6 botonetaDisLike"><a href="#"  class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
-                                <div class="col-6 botonetaLike"><a href="#" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>   
             </div>
         </div>
     </div>

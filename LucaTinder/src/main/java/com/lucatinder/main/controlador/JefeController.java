@@ -2,6 +2,7 @@ package com.lucatinder.main.controlador;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,9 @@ public class JefeController {
 
 	
 	@RequestMapping("/index")
-    public String saludo(  ) {
-		
-		
-       
+    public String saludo(ModelMap m) {
+		m.addAttribute("userName", "");
+		m.addAttribute("password", "");
         return "index";
     }
 	
