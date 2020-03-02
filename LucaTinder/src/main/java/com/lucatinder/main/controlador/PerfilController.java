@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.ModelMap;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.lucatinder.main.modelo.Contactos;
 import com.lucatinder.main.modelo.Perfil;
@@ -58,7 +59,12 @@ public class PerfilController {
 	public ModelAndView addPerfil(@ModelAttribute Perfil perfil) {
 		perfil.setFoto("/resources/images/perfil/sinfoto.png");// Se le asigna una foto por defecto que es sin foto
 		service.addPerfil(perfil);
-		return new ModelAndView("redirect:/index");
+		
+		User user = new User();
+		ModelAndView model = new ModelAndView("index");
+		model.addObject("user", user);
+		
+		return model;
 
 	}
 	/**
@@ -131,12 +137,35 @@ public class PerfilController {
 	 * @param idPerfilLike
 	 * @return perfil String pagina donde devuelve
 	 */
-	@PostMapping("/addContacto")
+	/*@PostMapping("/addContacto")
 	public String addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilLike) {
 		Contactos nuevoLigue= new Contactos();
 		nuevoLigue.setIdPerfil(idPerfil);
 		nuevoLigue.setIdPerfilLike(idPerfilLike);
 		service.addContacto(nuevoLigue);
 		return "perfil";
-	}		
+	}		*/
+	/**
+	 * Metodo listaContacto muestra los contactos
+	 * del usuario 
+	 * 
+	 * @param model 
+	 * @param p Perfil 
+	 * @return la pagina donde se envia
+	 */
+	@GetMapping("/listaContactos")
+	public String listaContactos(ModelMap model,Perfil p) {
+		logger.info("Muestrame perfiles like ");
+		List<Perfil> contacto=new ArrayList<Perfil>();
+		System.out.println("Estoy en listaContactos *************************");
+		//listas=service.mostrarSeleccion(p.getIdPerfil());
+		contacto=service.listaContacto(p.getIdPerfil());
+		model.addAttribute("contacto", contacto);
+		for(int i=0;i<contacto.size();i++) {
+			System.out.println(contacto.get(i));
+			System.out.println(" *******************BUCLE");
+		}
+		return "index"; 
+	}
+
 }

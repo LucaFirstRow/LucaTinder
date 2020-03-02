@@ -12,5 +12,5 @@ public interface DaoPerfilCustom {
 	
 	public List<Perfil> mostrarSeleccion(int genero);
 	public int addContacto(Contactos contacto);
-	public List<Contactos> listaContactos(int id);
+	public List<Perfil> listaContactos(int id);
 }

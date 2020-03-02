@@ -19,5 +19,5 @@ public interface PerfilServices {
 	public List<Perfil> mostrarSeleccion(int id);
 	public void addContacto(Contactos contacto);
 	public void editarPerfil(Perfil perfil);
-	public List<Contactos> listaContacto(int id);
+	public List<Perfil> listaContacto(int id);
 }
