@@ -1,11 +1,12 @@
 package com.lucatinder.main.service;
 
+import com.lucatinder.main.modelo.Contactos;
 import com.lucatinder.main.modelo.Perfil;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.lucatinder.main.dao.DaoPerfilRepository;
+import com.lucatinder.main.dao.DaoPerfil;
 import java.util.Optional;
 import java.util.List;
 /**
@@ -23,7 +24,7 @@ public class PerfilServicesImp implements PerfilServices {
 	 * para la obtencion de los datos de la BBDD.
 	 */
 	@Autowired
-	private DaoPerfilRepository Usuario;
+	private DaoPerfil Usuario;
 	@Override
 	/**
 	 * Metodo addPerfil como parametro de entrada un objecto
@@ -49,10 +50,34 @@ public class PerfilServicesImp implements PerfilServices {
 	 * @param int id identificador del usuario
 	 * @return List<Perfil> Devuelve una Lista de perfiles
 	 */
-	/*public List<Perfil> mostrarSeleccion(int id){
+	public List<Perfil> mostrarSeleccion(int id){
 		
 		Optional<Perfil> usuario=findOne(id);
 		return Usuario.mostrarSeleccion(usuario.get().getGenero());
-	}*/
+	}
+	/**
+	 * Metodo editarPerfil permite modifiar un perfil,
+	 * pasandole como parametro el objecto perfil
+	 * @param perfil 
+	 */
+	public void editarPerfil(Perfil perfil){
+		Usuario.save(perfil);
+	}
+	
+	/**
+	 * Metodo addContacto añade un nuevo contacto en la 
+	 * tabla contactos
+	 * @Param contacto Indica un nuevo contacto
+	 */
+	public void addContacto(Contactos contacto){
+		Usuario.addContacto(contacto);
+	}
+	/**
+	 * 
+	 */
+	public List<Contactos> listaContacto(int id){
+	   
+		return Usuario.listaContactos(id);
+	}
 
 }

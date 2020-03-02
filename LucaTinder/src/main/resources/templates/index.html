@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-
-<html  xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" 	href="/resources/css/mainIndex.css" />
-    <link href="https://fonts.googleapis.com/css?family=Kanit|Pacifico|Poppins:400,700i&display=swap" rel="stylesheet" >
+    <link rel="stylesheet" href="/resources/css/mainIndex.css">
+    <link href="/resources/css/font-awesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+    <link href="/resources/css/font-awesome/css/brands.css" rel="stylesheet">
+    <link href="/resources/css/font-awesome/css/solid.css" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Pacifico|Poppins:400,700i&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>LucaTinder</title>
 </head>
 <body>
-    <div class="container-fluid" id="content">
+    <div id="content">
+       <div class="fondo"></div>
        <div class="row h-100 fullHeigthRow">
            <div class="col-8">
                 <header class="header">
@@ -29,20 +28,21 @@
                 <p>Creemos en el amor Friki  ¿Y TÚ?</p>
             </div>
             <div class="col-8 getInFormFirstGruop">
-                <div class="col-12 col-md-6 col-lg-4">
-                
-                <form method="post" action ="#" id="loginForm" name="loginForm">
-                
+                <div class="col-12 col-md-6 col-lg-4  ml-4 mt-4">
+                <form  method="post" th:action="@{/perfil/list}" th:object="${user}" class="comicGruop" id="loginForm" name="loginForm">
                         <div class="form-group col-12">
-                            <input class="inputCustom form" placeholder="User Name" type="text" id="user" name="user"/>
-                            <input class="inputCustom" placeholder="Password" type="password"  id="password" name="password"/>
+                                <input class="inputCustom form" placeholder="User Name" type="text" id="userName" name="userName" th:field="*{userName}"/>
+                                <input class="inputCustom" placeholder="Password" type="password" id="password" name="password" th:field="*{password}"/>
                         </div>
-                        <div class="form-group col-12">
-                            <input type="submit" class="btn btn-custom col-8" value="Get In" id="getIn" name="getIn"/>
-                        </div>
-                        <div class="col-12"><small class="nuevoRegistro"><a th:href="@{/perfil/addPerfilForm}">Nuevo registro</a></small></div>
-                    </form>
+                    
+                    <div></div>
+                    <div class="form-group col-12 mt-3 d-flex">
+                        <input type="submit" class="btn btn-custom col-8" value="Get In" id="getIn" name="getIn"/>
+                        
+                    </div>
+                    <div class="col-12"><small class="nuevoRegistro"><a th:href="@{/perfil/addPerfilForm}"><i class="fas fa-user-plus"></i>  Crear mi perfil</a></small></div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
