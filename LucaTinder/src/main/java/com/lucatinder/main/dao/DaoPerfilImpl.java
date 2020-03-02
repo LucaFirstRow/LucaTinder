@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import com.lucatinder.main.modelo.Contactos;
+import com.lucatinder.main.modelo.Descartes;
+import com.lucatinder.main.modelo.Match;
 import com.lucatinder.main.modelo.Perfil;
 /**
  * 
@@ -42,9 +44,9 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	public int addContacto(Contactos contacto) {
 		Query query=entityManager.createNativeQuery("INSERT INTO contactos"
 				+ "(idContactos,idPerfil,idPerfilLike) VALUES (?,?,?)",Contactos.class);
-		query.setParameter(2, contacto.getPerfil());
+		query.setParameter(2, contacto.getPerfil().getIdPerfil());
 		query.setParameter(1,contacto.getIdContacto());
-		query.setParameter(3,contacto.getPerfil2());
+		query.setParameter(3,contacto.getPerfil2().getIdPerfil());
 		return query.executeUpdate();
 	}
 	/**
@@ -68,15 +70,15 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * 
 	 * @Param descartes  nuevo descartes
 	 */
-	/*public int addDescartes(Descartes descartes) {
+	public int addDescartes(Descartes descartes) {
 		Query query=entityManager.createNativeQuery("INSERT INTO descartes"
 				+ "(idDescartes,idPerfil,idPerfilDisLike) VALUES (?,?,?)",Descartes.class);
-		query.setParameter(2, descartes.getIdPerfil());
+		query.setParameter(2, descartes.getPerfil().getIdPerfil());
 		query.setParameter(1,descartes.getIdDescartes());
-		query.setParameter(3,descartes.getIdPerfilDisLike());
+		query.setParameter(3,descartes.getPerfil2().getIdPerfil());
 		return query.executeUpdate();
 	}
-	*/
+	
 	
 	/**
 	 * Metodo listaDescartes muestra los contactos
@@ -86,18 +88,37 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * @return Devulve una lista de contactos
 	 * 
 	 */
-	/*public List<Perfil> listaDescartes(int id){
+	public List<Perfil> listaDescartes(int id){
 		Query query=entityManager.createNativeQuery("SELECT perfil.*"
 				+ "FROM (perfil JOIN descartes ON perfil.idPerfil=descartes.idPerfil)"
 				+ "WHERE descartes.idPerfil=?");
 		query.setParameter(1,id);
 		return (List<Perfil>) query.getResultList();
-	}*/
+	}
 	/**
 	 * 
 	 */
-	public boolean usuariosMatch(int idPerfil, int idPerfilLike) {
-		return 0;
+	public List<Contactos> usuariosMatch(int idPerfil, int idPerfilLike) {
+	   Query query=entityManager.createNativeQuery("SELECT contactos.*"
+	   		+ "FROM contactos WHERE (idPerfil=? AND idPerfilLike=?)"
+	   		+ "OR (idPerfil=? AND idPerfilLike=?");
+	   query.setParameter(0, idPerfil);
+	   query.setParameter(1, idPerfilLike);
+	   query.setParameter(2, idPerfilLike);
+	   query.setParameter(3, idPerfil);
+	   return (List<Contactos>)query.getResultList();
+	}
+	/**
+	 * 
+	 * 
+	 */
+	public int addMatch (Match match) {
+		Query query=entityManager.createNativeQuery("INSERT INTO match"
+				+ "(idMatch,idPerfilMatch1,idPerfilMatch2) VALUES (?,?,?)",Match.class);
+		query.setParameter(2, match.getPerfil().getIdPerfil());
+		query.setParameter(1,match.getIdMatch());
+		query.setParameter(3,match.getPerfil2().getIdPerfil());
+		return query.executeUpdate();
 	}
 	
 }

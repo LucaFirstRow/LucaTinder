@@ -1,6 +1,8 @@
 package com.lucatinder.main.service;
 
 import com.lucatinder.main.modelo.Contactos;
+import com.lucatinder.main.modelo.Descartes;
+import com.lucatinder.main.modelo.Match;
 import com.lucatinder.main.modelo.Perfil;
 import javax.transaction.Transactional;
 
@@ -69,7 +71,12 @@ public class PerfilServicesImp implements PerfilServices {
 	 * tabla contactos
 	 * @Param contacto Indica un nuevo contacto
 	 */
-	public void addContacto(Contactos contacto){
+	public void addContacto(int idPerfil,int idPerfilLike){
+		Optional<Perfil> perfil=findOne(idPerfil);
+		Optional<Perfil> perfil2=findOne(idPerfilLike);
+		Contactos contacto=new Contactos();
+		contacto.setPerfil(perfil.get());
+		contacto.setPerfil2(perfil2.get());
 		Usuario.addContacto(contacto);
 	}
 	/**
@@ -87,21 +94,34 @@ public class PerfilServicesImp implements PerfilServices {
 	 * tabla contactos
 	 * @Param contacto Indica un nuevo contacto
 	 */
-	/*public void addDescartes(Descartes descarte){
-		Usuario.addDescartes(descarte);
-	}*/
+	public void addDescartes(int idPerfil,int idPerfilDisLike){
+		Optional<Perfil> perfil=findOne(idPerfil);
+		Optional<Perfil> perfil2=findOne(idPerfilDisLike);
+		Descartes descartes=new Descartes();
+		descartes.setPerfil(perfil.get());
+		descartes.setPerfil2(perfil2.get());
+		Usuario.addDescartes(descartes);
+	}
 	/**
 	 * listaDescartes muestra la lista de descartes 
 	 * de un usuario
 	 * @Param id identificador usuario
 	 * @return Devulve una listade descartes
 	 */
-	/*public List<Perfil> listaDescartes(int id){
+	public List<Perfil> listaDescartes(int id){
 	   
 		return Usuario.listaDescartes(id);
 	}
-    */
+    
 	public void addMatch(int idPerfil,int idPerfilLike) {
-		
+		List<Contactos> p=Usuario.usuariosMatch(idPerfil,idPerfilLike);
+		if(p.size()==2) {
+			for(int i=0;i<p.size();i++) {
+				Match match=new Match();
+				match.setPerfil(p.get(i).getPerfil());
+				match.setPerfil2(p.get(i).getPerfil2());
+				Usuario.addMatch(match);
+			}
+		}
 	}
 }

@@ -137,14 +137,11 @@ public class PerfilController {
 	 * @param idPerfilLike
 	 * @return perfil String pagina donde devuelve
 	 */
-	/*@PostMapping("/addContacto")
+	@PostMapping("/addContacto")
 	public String addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilLike) {
-		Contactos nuevoLigue= new Contactos();
-		nuevoLigue.setIdPerfil(idPerfil);
-		nuevoLigue.setIdPerfilLike(idPerfilLike);
-		service.addContacto(nuevoLigue);
+		service.addContacto(idPerfil,idPerfilLike);
 		return "perfil";
-	}		*/
+	}		
 	/**
 	 * Metodo listaContacto muestra los contactos
 	 * del usuario 
@@ -176,16 +173,12 @@ public class PerfilController {
 	 * @param idPerfilDisLike
 	 * @return perfil String pagina donde devuelve
 	 */
-	/*
+	
 	@PostMapping("/addDescartes")
 	public String addDescartes(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilDisLike) {
-		Descartes nuevoLigue= new Descartes();
-		nuevoLigue.setIdPerfil(idPerfil);
-		nuevoLigue.setIdPerfilLike(idPerfilDisLike);
-		service.addDescartes(nuevoLigue);
+		service.addDescartes(idPerfil,idPerfilDisLike);
 		return "perfil";
-	}
-	/*		
+	}		
 	/**
 	 * Metodo listaDescartes muestra la lista de los 
 	 * descartados
@@ -194,9 +187,8 @@ public class PerfilController {
 	 * @param p Perfil 
 	 * @return la pagina donde se envia
 	 */
-	/*
 	@GetMapping("/listaDescartes")
-	public String listaContactos(ModelMap model,Perfil p) {
+	public String listaDescartes(ModelMap model,Perfil p) {
 		logger.info("Muestrame perfiles Dislike ");
 		List<Perfil> descartes=new ArrayList<Perfil>();
 		System.out.println("Estoy en listaDescartes *************************");
@@ -207,6 +199,6 @@ public class PerfilController {
 			System.out.println(" *******************BUCLE");
 		}
 		return "index"; 
-	}*/
+	}
 
 }
