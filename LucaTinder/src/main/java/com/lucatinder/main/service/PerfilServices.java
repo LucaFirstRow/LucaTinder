@@ -22,4 +22,6 @@ public interface PerfilServices {
 	public List<Perfil> listaContacto(int id);
 	//public void addDescartes(Descartes des);
 	//public List<Perfil> listaDescartes(int id);
+	public void addMatch(int idPerfil,int idPerfilLike);
+	
 }

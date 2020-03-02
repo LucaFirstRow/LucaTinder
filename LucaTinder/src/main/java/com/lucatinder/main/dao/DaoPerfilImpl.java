@@ -29,7 +29,7 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 */
 	public List<Perfil> mostrarSeleccion(int genero){
 		Query query=entityManager.createNativeQuery("SELECT *"
-				+ "FROM mylibrary.perfil WHERE perfil.genero<>?",Perfil.class);
+				+ "FROM perfil WHERE perfil.genero<>?",Perfil.class);
 		query.setParameter(1,genero);
 		return (List<Perfil>)query.getResultList();
 	}
@@ -93,4 +93,11 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 		query.setParameter(1,id);
 		return (List<Perfil>) query.getResultList();
 	}*/
+	/**
+	 * 
+	 */
+	public boolean usuariosMatch(int idPerfil, int idPerfilLike) {
+		return 0;
+	}
+	
 }

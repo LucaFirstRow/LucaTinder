@@ -15,4 +15,5 @@ public interface DaoPerfilCustom {
 	public List<Perfil> listaContactos(int id);
 	//public int addDescartes(Descartes descartes);
 	//public List<Perfil> listaDescartes(int id);
+	public boolean usuarioMatch(int idPerfil, int idPerfilLike);
 }

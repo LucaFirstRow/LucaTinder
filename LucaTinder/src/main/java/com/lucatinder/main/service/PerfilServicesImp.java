@@ -101,4 +101,7 @@ public class PerfilServicesImp implements PerfilServices {
 		return Usuario.listaDescartes(id);
 	}
     */
+	public void addMatch(int idPerfil,int idPerfilLike) {
+		
+	}
 }
