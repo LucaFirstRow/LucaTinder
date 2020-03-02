@@ -125,6 +125,28 @@ public class PerfilController {
 		service.addContacto(nuevoLigue);
 		return "perfil";
 	}
+	/**
+	 * Metodo listaContacto muestra los contactos
+	 * del usuario 
+	 * 
+	 * @param model 
+	 * @param p Perfil 
+	 * @return la pagina donde se envia
+	 */
+	@GetMapping("/listaContactos")
+	public String listaContactos(ModelMap model,Perfil p) {
+		logger.info("Muestrame perfiles like ");
+		List<Perfil> contacto=new ArrayList<Perfil>();
+		System.out.println("Estoy en listaContactos *************************");
+		//listas=service.mostrarSeleccion(p.getIdPerfil());
+		contacto=service.listaContacto(p.getIdPerfil());
+		model.addAttribute("contacto", contacto);
+		for(int i=0;i<contacto.size();i++) {
+			System.out.println(contacto.get(i));
+			System.out.println(" *******************BUCLE");
+		}
+		return "index"; 
+	}
 			
 			
 }

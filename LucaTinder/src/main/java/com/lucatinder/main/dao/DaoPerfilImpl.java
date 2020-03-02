@@ -48,13 +48,18 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 		return query.executeUpdate();
 	}
 	/**
+	 * Metodo listaContactos muestra los contactos
+	 * que tiene un usuario
+	 * 
+	 * @param id identificador de usuario
+	 * @return Devulve una lista de contactos
 	 * 
 	 */
-	public List<Contactos> listaContactos(int id){
+	public List<Perfil> listaContactos(int id){
 		Query query=entityManager.createNativeQuery("SELECT perfil.*"
 				+ "FROM (perfil JOIN contactos ON perfil.idPerfil=contactos.idPerfil)"
 				+ "WHERE contactos.idPerfil=?");
 		query.setParameter(1,id);
-		return (List<Contactos>) query.getResultList();
+		return (List<Perfil>) query.getResultList();
 	}
 }

@@ -73,9 +73,12 @@ public class PerfilServicesImp implements PerfilServices {
 		Usuario.addContacto(contacto);
 	}
 	/**
-	 * 
+	 * listaContacto muestra una lista de contactos 
+	 * de un usuario
+	 * @Param id identificador usuario
+	 * @return Devulve una lista Contactos
 	 */
-	public List<Contactos> listaContacto(int id){
+	public List<Perfil> listaContacto(int id){
 	   
 		return Usuario.listaContactos(id);
 	}
