@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 
 
 import com.lucatinder.main.modelo.Perfil;
+import com.lucatinder.main.modelo.User;
 import com.lucatinder.main.service.PerfilServices;
 /**
  * 
@@ -69,7 +71,7 @@ public class PerfilController {
 	 * @param p Perfil
 	 * @return la pagina 
 	 */
-	@GetMapping("/list")
+	/*@GetMapping("/list")
 	public String mostrarSeleccion(ModelMap model,Perfil p) {
 		logger.info("Muestrame perfiles");
 		List<Perfil> listas=new ArrayList<Perfil>();
@@ -81,30 +83,16 @@ public class PerfilController {
 		
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
-	}
-	@RequestMapping("/login")
-	public String login(ModelMap m,Perfil p) {
-		logger.info("**************************************Loging Perfil");
-		System.out.println("ESTE ES EL VALOR ");
-		String d =m.get("UserPerfil")/*
-		 * Copyright 2020 the original author or authors.
-		 *
-		 * Licensed under the Apache License, Version 2.0 (the "License");
-		 * you may not use this file except in compliance with the License.
-		 * You may obtain a copy of the License at
-		 *
-		 *      https://www.apache.org/licenses/LICENSE-2.0
-		 *
-		 * Unless required by applicable law or agreed to in writing, software
-		 * distributed under the License is distributed on an "AS IS" BASIS,
-		 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-		 * See the License for the specific language governing permissions and
-		 * limitations under the License.
-		 */
-.toString();
+	}*/
+	@RequestMapping("/list")
+	public String login(@ModelAttribute("user") User user,ModelMap model) {
+		logger.info("***********Entra en el login");
+		//Creacion manual de una prueva de redireccion con la lista de perfiles para un usuario
+		List<Perfil> seleccion=service.mostrarSeleccion(Integer.parseInt(user.getUserName()));
+		model.addAttribute("seleccion",seleccion);
+		model.addAttribute("current_user", service.findOne(Integer.parseInt(user.getUserName())));
 		
-		System.out.println("ENTRA EN LOGIN "+ d);
-		return "index"; 
+		return "perfil"; 
 		
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
