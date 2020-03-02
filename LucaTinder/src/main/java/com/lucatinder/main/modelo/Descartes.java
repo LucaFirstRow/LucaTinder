@@ -11,48 +11,54 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
-@Entity(name="contactos")
-public class Contactos implements Serializable {
 
- 
+@Entity(name="descartes")
+public class Descartes implements Serializable {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-    @Column(name="id_contacto", unique=true, nullable=false, length=10)
-    private int idContacto;
+
+	
+
+    /**
+     * The optimistic lock. Available via standard bean get/set operations.
+     */
+   
+
+    @Id
+    @Column(name="id_descartes", unique=true, nullable=false, length=10)
+    private int idDescartes;
     @ManyToOne
     @JoinColumn(name="id_perfil")
     private Perfil perfil;
     @ManyToOne
-    @JoinColumn(name="id_perfil_like")
+    @JoinColumn(name="id_perfil_dislike")
     private Perfil perfil2;
 
     /** Default constructor. */
-    public Contactos() {
+    public Descartes() {
         super();
     }
 
     /**
-     * Access method for idContacto.
+     * Access method for idDescartes.
      *
-     * @return the current value of idContacto
+     * @return the current value of idDescartes
      */
-    public int getIdContacto() {
-        return idContacto;
+    public int getIdDescartes() {
+        return idDescartes;
     }
 
     /**
-     * Setter method for idContacto.
+     * Setter method for idDescartes.
      *
-     * @param aIdContacto the new value for idContacto
+     * @param aIdDescartes the new value for idDescartes
      */
-    public void setIdContacto(int aIdContacto) {
-        idContacto = aIdContacto;
+    public void setIdDescartes(int aIdDescartes) {
+        idDescartes = aIdDescartes;
     }
 
     /**
@@ -92,35 +98,35 @@ public class Contactos implements Serializable {
     }
 
     /**
-     * Compares the key for this instance with another Contactos.
+     * Compares the key for this instance with another Descartes.
      *
      * @param other The object to compare to
-     * @return True if other object is instance of class Contactos and the key objects are equal
+     * @return True if other object is instance of class Descartes and the key objects are equal
      */
     private boolean equalKeys(Object other) {
         if (this==other) {
             return true;
         }
-        if (!(other instanceof Contactos)) {
+        if (!(other instanceof Descartes)) {
             return false;
         }
-        Contactos that = (Contactos) other;
-        if (this.getIdContacto() != that.getIdContacto()) {
+        Descartes that = (Descartes) other;
+        if (this.getIdDescartes() != that.getIdDescartes()) {
             return false;
         }
         return true;
     }
 
     /**
-     * Compares this instance with another Contactos.
+     * Compares this instance with another Descartes.
      *
      * @param other The object to compare to
      * @return True if the objects are the same
      */
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Contactos)) return false;
-        return this.equalKeys(other) && ((Contactos)other).equalKeys(this);
+        if (!(other instanceof Descartes)) return false;
+        return this.equalKeys(other) && ((Descartes)other).equalKeys(this);
     }
 
     /**
@@ -132,7 +138,7 @@ public class Contactos implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getIdContacto();
+        i = getIdDescartes();
         result = 37*result + i;
         return result;
     }
@@ -144,8 +150,8 @@ public class Contactos implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("[Contactos |");
-        sb.append(" idContacto=").append(getIdContacto());
+        StringBuffer sb = new StringBuffer("[Descartes |");
+        sb.append(" idDescartes=").append(getIdDescartes());
         sb.append("]");
         return sb.toString();
     }
@@ -157,7 +163,7 @@ public class Contactos implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("idContacto", Integer.valueOf(getIdContacto()));
+        ret.put("idDescartes", Integer.valueOf(getIdDescartes()));
         return ret;
     }
 

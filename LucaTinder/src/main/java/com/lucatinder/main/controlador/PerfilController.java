@@ -28,7 +28,7 @@ import com.lucatinder.main.service.PerfilServices;
 @Controller
 @RequestMapping("/perfil")
 public class PerfilController {
-   
+ 
 	/**
 	 * {@value #service} PerfilServices se declara esta variable para
 	 *  ofrecer los servicios
@@ -59,7 +59,12 @@ public class PerfilController {
 	public ModelAndView addPerfil(@ModelAttribute Perfil perfil) {
 		perfil.setFoto("/resources/images/perfil/sinfoto.png");// Se le asigna una foto por defecto que es sin foto
 		service.addPerfil(perfil);
-		return new ModelAndView("redirect:/index");
+		
+		User user = new User();
+		ModelAndView model = new ModelAndView("index");
+		model.addObject("user", user);
+		
+		return model;
 
 	}
 	/**
@@ -132,14 +137,14 @@ public class PerfilController {
 	 * @param idPerfilLike
 	 * @return perfil String pagina donde devuelve
 	 */
-	@PostMapping("/addContacto")
+	/*@PostMapping("/addContacto")
 	public String addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilLike) {
 		Contactos nuevoLigue= new Contactos();
 		nuevoLigue.setIdPerfil(idPerfil);
 		nuevoLigue.setIdPerfilLike(idPerfilLike);
 		service.addContacto(nuevoLigue);
 		return "perfil";
-	}		
+	}		*/
 	/**
 	 * Metodo listaContacto muestra los contactos
 	 * del usuario 

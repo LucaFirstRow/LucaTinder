@@ -11,48 +11,47 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
-@Entity(name="contactos")
-public class Contactos implements Serializable {
 
- 
+@Entity(name="match")
+public class Match implements Serializable {
 
+   
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-    @Column(name="id_contacto", unique=true, nullable=false, length=10)
-    private int idContacto;
+    @Column(name="id_match", unique=true, nullable=false, length=10)
+    private int idMatch;
     @ManyToOne
-    @JoinColumn(name="id_perfil")
+    @JoinColumn(name="id_perfil_match_1")
     private Perfil perfil;
     @ManyToOne
-    @JoinColumn(name="id_perfil_like")
+    @JoinColumn(name="id_perfil_match_2")
     private Perfil perfil2;
 
     /** Default constructor. */
-    public Contactos() {
+    public Match() {
         super();
     }
 
     /**
-     * Access method for idContacto.
+     * Access method for idMatch.
      *
-     * @return the current value of idContacto
+     * @return the current value of idMatch
      */
-    public int getIdContacto() {
-        return idContacto;
+    public int getIdMatch() {
+        return idMatch;
     }
 
     /**
-     * Setter method for idContacto.
+     * Setter method for idMatch.
      *
-     * @param aIdContacto the new value for idContacto
+     * @param aIdMatch the new value for idMatch
      */
-    public void setIdContacto(int aIdContacto) {
-        idContacto = aIdContacto;
+    public void setIdMatch(int aIdMatch) {
+        idMatch = aIdMatch;
     }
 
     /**
@@ -92,35 +91,35 @@ public class Contactos implements Serializable {
     }
 
     /**
-     * Compares the key for this instance with another Contactos.
+     * Compares the key for this instance with another Match.
      *
      * @param other The object to compare to
-     * @return True if other object is instance of class Contactos and the key objects are equal
+     * @return True if other object is instance of class Match and the key objects are equal
      */
     private boolean equalKeys(Object other) {
         if (this==other) {
             return true;
         }
-        if (!(other instanceof Contactos)) {
+        if (!(other instanceof Match)) {
             return false;
         }
-        Contactos that = (Contactos) other;
-        if (this.getIdContacto() != that.getIdContacto()) {
+        Match that = (Match) other;
+        if (this.getIdMatch() != that.getIdMatch()) {
             return false;
         }
         return true;
     }
 
     /**
-     * Compares this instance with another Contactos.
+     * Compares this instance with another Match.
      *
      * @param other The object to compare to
      * @return True if the objects are the same
      */
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Contactos)) return false;
-        return this.equalKeys(other) && ((Contactos)other).equalKeys(this);
+        if (!(other instanceof Match)) return false;
+        return this.equalKeys(other) && ((Match)other).equalKeys(this);
     }
 
     /**
@@ -132,7 +131,7 @@ public class Contactos implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getIdContacto();
+        i = getIdMatch();
         result = 37*result + i;
         return result;
     }
@@ -144,8 +143,8 @@ public class Contactos implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("[Contactos |");
-        sb.append(" idContacto=").append(getIdContacto());
+        StringBuffer sb = new StringBuffer("[Match |");
+        sb.append(" idMatch=").append(getIdMatch());
         sb.append("]");
         return sb.toString();
     }
@@ -157,7 +156,7 @@ public class Contactos implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("idContacto", Integer.valueOf(getIdContacto()));
+        ret.put("idMatch", Integer.valueOf(getIdMatch()));
         return ret;
     }
 
