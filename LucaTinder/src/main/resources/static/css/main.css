@@ -1,11 +1,14 @@
 body{
-    background-color: white;
-    margin: 0;
-    font-family: 'Poppins';
-    color: azure;
-    background-image: url(/resources/images/fondoIndex3.jpg);
+   color: azure;
+}
+.fondo{
+    background-image: url(../images/fondoIndex2.jpg);
+    width: 100vw;
+    height: 100vh;
     background-size: cover;
-    min-height: 100vh;
+    position: fixed;
+    z-index: -100;
+    contain: " ";
 }
 a:hover{
     text-decoration: none;
@@ -34,8 +37,10 @@ form{
     width: 250px;
 }
 .addForm{
-    padding-left: 50px !important;
-    margin-top: 20px;
+    padding-left: 15vw !important;
+    margin-top: 10vh;
+    display: flex !important;
+    justify-content: flex-start !important;
 }
 input, textarea{
     font-family: 'Poppins' !important;
@@ -48,7 +53,7 @@ input, textarea{
     padding: 2px;
     outline: none;
     border: none;
-    border-bottom:1px solid #eb4e65;
+    border-bottom:2px solid #eb4e65;
     padding-bottom: 2px;    
     margin-bottom: 20px !important;
     margin-right: 4px; 
@@ -109,9 +114,10 @@ label{
 @media (max-width: 574px) {
    
     #content{
-        background-image: url(resources/images/fondoMovIndex.jpg);
-        background-size: contain;
+        background-image: url(images/fondoSMIndex.jpg);
+        background-size: cover;
         min-height: 100vh;
+        min-width: 100vw;
     }
     .aboutApp{
         padding-left:0;
@@ -120,6 +126,16 @@ label{
     }
     .fullHeigthRow{
         justify-content: center;
+    }
+    .fondo{
+        background-image: url(../images/fondoSMIndex.jpg);
+        min-width: 100vw;
+        min-height: 100vh;
+        background-size: cover;
+        position: fixed;
+        z-index: -100;
+        contain: " ";
+        background-color: #617fd5;
     }
 }
 
