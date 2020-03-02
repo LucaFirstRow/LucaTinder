@@ -91,12 +91,14 @@ public class PerfilController {
 	 * @param model
 	 * @return
 	 */
+	/*
 	@GetMapping("/addPerfilForm")
 	public String newUser(ModelMap model) {
 		logger.info("\"ENTRA ************************************************\"");
 		model.addAttribute("Perfil", new Perfil());
 		return "addPerfil";		
 	}
+	*/
 	/**
 	 * Metodo editarPerfil permite editar el Peril 
 	 * de un usuario
