@@ -1,5 +1,6 @@
 package com.lucatinder.main.service;
 
+import com.lucatinder.main.modelo.Contactos;
 import com.lucatinder.main.modelo.Perfil;
 import javax.transaction.Transactional;
 
@@ -53,6 +54,30 @@ public class PerfilServicesImp implements PerfilServices {
 		
 		Optional<Perfil> usuario=findOne(id);
 		return Usuario.mostrarSeleccion(usuario.get().getGenero());
+	}
+	/**
+	 * Metodo editarPerfil permite modifiar un perfil,
+	 * pasandole como parametro el objecto perfil
+	 * @param perfil 
+	 */
+	public void editarPerfil(Perfil perfil){
+		Usuario.save(perfil);
+	}
+	
+	/**
+	 * Metodo addContacto añade un nuevo contacto en la 
+	 * tabla contactos
+	 * @Param contacto Indica un nuevo contacto
+	 */
+	public void addContacto(Contactos contacto){
+		Usuario.addContacto(contacto);
+	}
+	/**
+	 * 
+	 */
+	public List<Contactos> listaContacto(int id){
+	   
+		return Usuario.listaContactos(id);
 	}
 
 }

@@ -5,6 +5,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+
+import com.lucatinder.main.modelo.Contactos;
 import com.lucatinder.main.modelo.Perfil;
 /**
  * 
@@ -30,5 +32,29 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 				+ "FROM mylibrary.perfil WHERE perfil.genero<>?",Perfil.class);
 		query.setParameter(1,genero);
 		return (List<Perfil>)query.getResultList();
+	}
+	/**
+	 * Metodo addContacto inserta un nuevo contactos
+	 * en la tabla contactos
+	 * 
+	 * @Param contacto  nuevo contacto
+	 */
+	public int addContacto(Contactos contacto) {
+		Query query=entityManager.createNativeQuery("INSERT INTO contactos"
+				+ "(idContactos,idPerfil,idPerfilLike) VALUES (?,?,?)",Contactos.class);
+		query.setParameter(2, contacto.getIdPerfil());
+		query.setParameter(1,contacto.getIdContactos());
+		query.setParameter(3,contacto.getIdPerfilLike());
+		return query.executeUpdate();
+	}
+	/**
+	 * 
+	 */
+	public List<Contactos> listaContactos(int id){
+		Query query=entityManager.createNativeQuery("SELECT perfil.*"
+				+ "FROM (perfil JOIN contactos ON perfil.idPerfil=contactos.idPerfil)"
+				+ "WHERE contactos.idPerfil=?");
+		query.setParameter(1,id);
+		return (List<Contactos>) query.getResultList();
 	}
 }

@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +14,7 @@ import org.springframework.ui.ModelMap;
 import java.util.List;
 import java.util.ArrayList;
 
-
+import com.lucatinder.main.modelo.Contactos;
 import com.lucatinder.main.modelo.Perfil;
 import com.lucatinder.main.service.PerfilServices;
 /**
@@ -84,6 +85,39 @@ public class PerfilController {
 		
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
+	}
+	/**
+	 * Falta añadir esto
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/addPerfilForm")
+	public String newUser(ModelMap model) {
+		logger.info("\"ENTRA ************************************************\"");
+		model.addAttribute("Perfil", new Perfil());
+		return "addPerfil";		
+	}
+	/**
+	 * Metodo editarPerfil permite editar el Peril 
+	 * de un usuario
+	 * @param model
+	 * @param id indica el idPerfil del usuario
+	 * @return addPerfil la pagina
+	 */
+	@GetMapping("/edit")
+	public String editarPerfil(ModelMap model,@RequestParam("idPerfil") int id) {
+		logger.info("Estoy en la etapa de EDIT");
+		model.addAttribute("Perfil", service.findOne(id));
+		return "addPerfil";
+	}
+	
+	@PostMapping("/addContacto")
+	public String addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilLike) {
+		Contactos nuevoLigue= new Contactos();
+		nuevoLigue.setIdPerfil(idPerfil);
+		nuevoLigue.setIdPerfilLike(idPerfilLike);
+		service.addContacto(nuevoLigue);
+		return "perfil";
 	}
 			
 			
