@@ -76,7 +76,11 @@ public class PerfilController {
 		//listas=service.mostrarSeleccion(p.getIdPerfil());
 		listas=service.mostrarSeleccion(20);
 		model.addAttribute("listas", listas);
-		return "list"; 
+		for(int i=0;i<listas.size();i++) {
+			System.out.println(listas.get(i));
+			System.out.println(" *******************BUCLE");
+		}
+		return "index"; 
 		
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
