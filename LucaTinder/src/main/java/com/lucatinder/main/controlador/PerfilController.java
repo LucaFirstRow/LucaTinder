@@ -27,7 +27,7 @@ import com.lucatinder.main.service.PerfilServices;
 @Controller
 @RequestMapping("/perfil")
 public class PerfilController {
-   
+ 
 	/**
 	 * {@value #service} PerfilServices se declara esta variable para
 	 *  ofrecer los servicios
