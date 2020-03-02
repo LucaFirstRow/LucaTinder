@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,10 +29,10 @@
             </div>
             <div class="col-8 getInFormFirstGruop">
                 <div class="col-12 col-md-6 col-lg-4  ml-4 mt-4">
-                <form  method="post" th:action="@{/perfil/login}" th:object="${UserPerfil}" class="comicGruop" id="loginForm" name="loginForm">
+                <form  method="post" th:action="@{/perfil/list}" th:object="${user}" class="comicGruop" id="loginForm" name="loginForm">
                         <div class="form-group col-12">
-                                <input class="inputCustom form" placeholder="User Name" type="text" id="user" name="user" th:text="${userName}"/>
-                                <input class="inputCustom" placeholder="Password" type="password" id="password" name="password"/>
+                                <input class="inputCustom form" placeholder="User Name" type="text" id="userName" name="userName" th:field="*{userName}"/>
+                                <input class="inputCustom" placeholder="Password" type="password" id="password" name="password" th:field="*{password}"/>
                         </div>
                     
                     <div></div>
