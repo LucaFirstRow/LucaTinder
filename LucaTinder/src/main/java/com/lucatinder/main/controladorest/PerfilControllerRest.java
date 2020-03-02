@@ -81,7 +81,7 @@ public class PerfilControllerRest {
 	/**
 	 * 
 	 * @author Equipo 1
-	 * Añade un contacto pasandole el id perfil y el perfil like
+	 * Añade un contato pasandole el id perfil y el perfil like
 	 * 
 	 */
 	@PostMapping("/addContacto")
