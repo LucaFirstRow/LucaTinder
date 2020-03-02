@@ -110,7 +110,13 @@ public class PerfilController {
 		model.addAttribute("Perfil", service.findOne(id));
 		return "addPerfil";
 	}
-	
+	/**
+	 * Metodo addContacto añade un nuevo contacto 
+	 * 
+	 * @param idPerfil
+	 * @param idPerfilLike
+	 * @return perfil String pagina donde devuelve
+	 */
 	@PostMapping("/addContacto")
 	public String addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilLike) {
 		Contactos nuevoLigue= new Contactos();
