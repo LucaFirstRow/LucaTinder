@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.ModelMap;
 
 import java.util.List;
-import java.util.ArrayList;
-
 import com.lucatinder.main.modelo.Contactos;
 import com.lucatinder.main.modelo.Perfil;
+import com.lucatinder.main.modelo.User;
 import com.lucatinder.main.service.PerfilServices;
 /**
  * 
@@ -69,7 +68,7 @@ public class PerfilController {
 	 * @param p Perfil
 	 * @return la pagina 
 	 */
-	@GetMapping("/list")
+	/*@GetMapping("/list")
 	public String mostrarSeleccion(ModelMap model,Perfil p) {
 		logger.info("Muestrame perfiles");
 		List<Perfil> listas=new ArrayList<Perfil>();
@@ -82,6 +81,19 @@ public class PerfilController {
 			System.out.println(" *******************BUCLE");
 		}
 		return "index"; 
+		
+		//Pagina donde muestra los perfiles
+		//no se especifica como se llama la imagen
+	}*/
+	@RequestMapping("/list")
+	public String login(@ModelAttribute("user") User user,ModelMap model) {
+		logger.info("***********Entra en el login");
+		//Creacion manual de una prueva de redireccion con la lista de perfiles para un usuario
+		List<Perfil> seleccion=service.mostrarSeleccion(Integer.parseInt(user.getUserName()));
+		model.addAttribute("seleccion",seleccion);
+		model.addAttribute("current_user", service.findOne(Integer.parseInt(user.getUserName())));
+		
+		return "perfil"; 
 		
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
@@ -126,7 +138,5 @@ public class PerfilController {
 		nuevoLigue.setIdPerfilLike(idPerfilLike);
 		service.addContacto(nuevoLigue);
 		return "perfil";
-	}
-			
-			
+	}		
 }
