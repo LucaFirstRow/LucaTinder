@@ -21,6 +21,7 @@ public class UtilController {
 	
 	@RequestMapping(value = "/cargardatos", method = RequestMethod.GET)
 	public String cargarDatos() {
+		cargar.generarPerfiles();
 		return "index";		
 	}
 	
