@@ -62,4 +62,35 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 		query.setParameter(1,id);
 		return (List<Perfil>) query.getResultList();
 	}
+	 /**
+	 * Metodo addDescartes inserta un nuevo usuario dislike
+	 * en la tabla descartes
+	 * 
+	 * @Param descartes  nuevo descartes
+	 */
+	/*public int addDescartes(Descartes descartes) {
+		Query query=entityManager.createNativeQuery("INSERT INTO descartes"
+				+ "(idDescartes,idPerfil,idPerfilDisLike) VALUES (?,?,?)",Descartes.class);
+		query.setParameter(2, descartes.getIdPerfil());
+		query.setParameter(1,descartes.getIdDescartes());
+		query.setParameter(3,descartes.getIdPerfilDisLike());
+		return query.executeUpdate();
+	}
+	*/
+	
+	/**
+	 * Metodo listaDescartes muestra los contactos
+	 * que tiene un usuario
+	 * 
+	 * @param id identificador de usuario
+	 * @return Devulve una lista de contactos
+	 * 
+	 */
+	/*public List<Perfil> listaDescartes(int id){
+		Query query=entityManager.createNativeQuery("SELECT perfil.*"
+				+ "FROM (perfil JOIN descartes ON perfil.idPerfil=descartes.idPerfil)"
+				+ "WHERE descartes.idPerfil=?");
+		query.setParameter(1,id);
+		return (List<Perfil>) query.getResultList();
+	}*/
 }

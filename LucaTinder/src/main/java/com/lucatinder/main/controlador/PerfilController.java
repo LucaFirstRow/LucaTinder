@@ -162,5 +162,46 @@ public class PerfilController {
 		}
 		return "index"; 
 	}
+	
+		/**
+	 * Metodo addDescartesañade usuarios descartados
+	 * en la tabla de Descartes
+	 * 
+	 * @param idPerfil
+	 * @param idPerfilDisLike
+	 * @return perfil String pagina donde devuelve
+	 */
+	/*
+	@PostMapping("/addDescartes")
+	public String addDescartes(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilDisLike) {
+		Descartes nuevoLigue= new Descartes();
+		nuevoLigue.setIdPerfil(idPerfil);
+		nuevoLigue.setIdPerfilLike(idPerfilDisLike);
+		service.addDescartes(nuevoLigue);
+		return "perfil";
+	}
+	/*		
+	/**
+	 * Metodo listaDescartes muestra la lista de los 
+	 * descartados
+	 * 
+	 * @param model 
+	 * @param p Perfil 
+	 * @return la pagina donde se envia
+	 */
+	/*
+	@GetMapping("/listaDescartes")
+	public String listaContactos(ModelMap model,Perfil p) {
+		logger.info("Muestrame perfiles Dislike ");
+		List<Perfil> descartes=new ArrayList<Perfil>();
+		System.out.println("Estoy en listaDescartes *************************");
+		descartes=service.listaDescartes(p.getIdPerfil());
+		model.addAttribute("descartes", descartes);
+		for(int i=0;i<descartes.size();i++) {
+			System.out.println(descartes.get(i));
+			System.out.println(" *******************BUCLE");
+		}
+		return "index"; 
+	}*/
 
 }

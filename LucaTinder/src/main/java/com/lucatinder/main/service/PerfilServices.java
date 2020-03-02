@@ -20,4 +20,6 @@ public interface PerfilServices {
 	public void addContacto(Contactos contacto);
 	public void editarPerfil(Perfil perfil);
 	public List<Perfil> listaContacto(int id);
+	//public void addDescartes(Descartes des);
+	//public List<Perfil> listaDescartes(int id);
 }

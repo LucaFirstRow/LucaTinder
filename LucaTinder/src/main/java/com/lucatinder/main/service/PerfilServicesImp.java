@@ -82,5 +82,23 @@ public class PerfilServicesImp implements PerfilServices {
 	   
 		return Usuario.listaContactos(id);
 	}
-
+	/**
+	 * Metodo addDescartes añade un nuevo contacto en la 
+	 * tabla contactos
+	 * @Param contacto Indica un nuevo contacto
+	 */
+	/*public void addDescartes(Descartes descarte){
+		Usuario.addDescartes(descarte);
+	}*/
+	/**
+	 * listaDescartes muestra la lista de descartes 
+	 * de un usuario
+	 * @Param id identificador usuario
+	 * @return Devulve una listade descartes
+	 */
+	/*public List<Perfil> listaDescartes(int id){
+	   
+		return Usuario.listaDescartes(id);
+	}
+    */
 }
