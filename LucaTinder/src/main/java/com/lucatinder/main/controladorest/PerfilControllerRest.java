@@ -87,8 +87,8 @@ public class PerfilControllerRest {
 	@PostMapping("/addContacto")
 	public ResponseEntity<String> addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam("idPerfilLike") int idPerfilLike) {
 		Contactos nuevoLigue= new Contactos();
-		nuevoLigue.setIdPerfil(idPerfil);
-		nuevoLigue.setIdPerfilLike(idPerfilLike);
+		//nuevoLigue.setIdPerfil(idPerfil);
+		//nuevoLigue.setIdPerfilLike(idPerfilLike);
 		service.addContacto(nuevoLigue);
 		return ResponseEntity.ok().header("Header", "Contacto añadido con exito")
 		        .body("la operacion se realizo correctamente");
