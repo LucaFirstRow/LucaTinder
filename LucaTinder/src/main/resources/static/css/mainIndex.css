@@ -81,7 +81,7 @@ form{
     background-position: center;
     background-size: cover;
     min-height: 500px;
-    background-image: url(../images/fondoIndex2.jpg);
+    background-image: url(images/fondoIndex2.jpg);
     background-repeat: no-repeat;
     z-index: -1;
     content: " ";
@@ -112,6 +112,22 @@ form{
     right: 0;
     position: fixed;
 }
+.sideNav{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    color: white;
+    max-width: 150px;
+    padding: 10px;
+    background-color: #5e9b86;
+    right: 0;
+    position: fixed;
+}
+#bloqueContentPerfil{
+    margin-right: 100px;
+    margin-left: 20px;
+}
+
 .li.active{
     background: #eb4e65;
 }
@@ -143,7 +159,8 @@ form{
 
 .list-unstyled {
     padding-left: 0;
-    list-style: none; }
+    list-style: none; 
+}
 
 .carousel{
     width: 400px;
@@ -157,9 +174,10 @@ form{
     height: 100%;
 }
 .cardPerfil{
-    border: 5px solid #1e785d;
+    border: 6px solid #1e785d;
     background-color: #6280d5;
     display: flex;
+    border-radius: 10px;
     padding: 0 !important;
 }
 .blockCardPerfil{
@@ -239,6 +257,26 @@ form{
     .fullHeigthRow{
         justify-content: center;
     }
+    .fondo{
+        background-image: url(images/fondoSMIndex.jpg);
+        min-width: 100vw;
+        min-height: 100vh;
+        background-size: cover;
+        position: fixed;
+        z-index: -100;
+        contain: " ";
+        background-color: #617fd5;
+    }
+    .sideNav{
+        display: flex;
+        position: fixed;
+        min-width: 100vw !important;
+        height: 80px;
+        justify-content: space-around;
+        z-index: 1000;
+    }
+    #bloqueContentPerfil{
+        margin-top: 100px;
+        margin-right: 20px;
+    }
 }
-
-
