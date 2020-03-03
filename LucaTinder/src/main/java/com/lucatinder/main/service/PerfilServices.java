@@ -22,5 +22,6 @@ public interface PerfilServices {
 	public void addDescartes(int idPerfil,int idPerfilDisLike);
 	public List<Perfil> listaDescartes(int id);
 	public void addMatch(int idPerfil,int idPerfilLike);
+	public List<Perfil> listaMatch(int id);
 	
 }

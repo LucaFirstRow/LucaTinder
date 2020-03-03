@@ -112,7 +112,13 @@ public class PerfilServicesImp implements PerfilServices {
 	   
 		return Usuario.listaDescartes(id);
 	}
-    
+    /**
+     * addMatch Comprueba si existe Match y si existe agrega a la
+     * tabla match
+     * 
+     * @Param idPerfil identificador Usuario
+     * @Param idPerfilLike identificador de UsuarioLike
+     */
 	public void addMatch(int idPerfil,int idPerfilLike) {
 		List<Contactos> p=Usuario.usuariosMatch(idPerfil,idPerfilLike);
 		if(p.size()==2) {
@@ -123,5 +129,15 @@ public class PerfilServicesImp implements PerfilServices {
 				Usuario.addMatch(match);
 			}
 		}
+	}
+	/**
+	 * listaMatch devuelve la lista de Match
+	 * del Usuario 
+	 * 
+	 * @param id identificador de Usuario
+	 * @return Devuelve una lista de Perfiles
+	 */
+	public List<Perfil> listaMatch(int id){
+		return Usuario.listaMatch(id);
 	}
 }

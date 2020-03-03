@@ -43,10 +43,10 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 */
 	public int addContacto(Contactos contacto) {
 		Query query=entityManager.createNativeQuery("INSERT INTO contactos"
-				+ "(idContactos,idPerfil,idPerfilLike) VALUES (?,?,?)",Contactos.class);
-		query.setParameter(2, contacto.getPerfil().getIdPerfil());
-		query.setParameter(1,contacto.getIdContacto());
-		query.setParameter(3,contacto.getPerfil2().getIdPerfil());
+				+ "(id_perfil,id_perfil_like,id_contacto) VALUES (?,?,?)",Contactos.class);
+		query.setParameter(1, contacto.getPerfil().getIdPerfil());
+		query.setParameter(3,contacto.getIdContacto());
+		query.setParameter(2,contacto.getPerfil2().getIdPerfil());
 		return query.executeUpdate();
 	}
 	/**
@@ -59,8 +59,8 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 */
 	public List<Perfil> listaContactos(int id){
 		Query query=entityManager.createNativeQuery("SELECT perfil.*"
-				+ "FROM (perfil JOIN contactos ON perfil.idPerfil=contactos.idPerfil)"
-				+ "WHERE contactos.idPerfil=?");
+				+ "FROM (perfil JOIN contactos ON perfil.id_perfil=contactos.id_perfil)"
+				+ "WHERE contactos.id_perfil=?");
 		query.setParameter(1,id);
 		return (List<Perfil>) query.getResultList();
 	}
@@ -72,14 +72,12 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 */
 	public int addDescartes(Descartes descartes) {
 		Query query=entityManager.createNativeQuery("INSERT INTO descartes"
-				+ "(idDescartes,idPerfil,idPerfilDisLike) VALUES (?,?,?)",Descartes.class);
+				+ "(id_descartes,id_perfil,id_perfil_dislike) VALUES (?,?,?)",Descartes.class);
 		query.setParameter(2, descartes.getPerfil().getIdPerfil());
 		query.setParameter(1,descartes.getIdDescartes());
 		query.setParameter(3,descartes.getPerfil2().getIdPerfil());
 		return query.executeUpdate();
 	}
-	
-	
 	/**
 	 * Metodo listaDescartes muestra los contactos
 	 * que tiene un usuario
@@ -90,35 +88,52 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 */
 	public List<Perfil> listaDescartes(int id){
 		Query query=entityManager.createNativeQuery("SELECT perfil.*"
-				+ "FROM (perfil JOIN descartes ON perfil.idPerfil=descartes.idPerfil)"
-				+ "WHERE descartes.idPerfil=?");
+				+ "FROM (perfil JOIN descartes ON perfil.id_perfil=descartes.id_perfil)"
+				+ "WHERE descartes.id_perfil=?",Perfil.class);
 		query.setParameter(1,id);
 		return (List<Perfil>) query.getResultList();
 	}
 	/**
+	 * Metodo usuarioMatch permite indentificar los usuarios
+	 * que ha dado like mutuamente
 	 * 
+	 * @Param idPerfil identificador del Usuario
+	 * @Para idPerfilLike identificador del Usuario que le gusta
+	 * @return List<Contactos> Devuelve una lista de contactos   
 	 */
 	public List<Contactos> usuariosMatch(int idPerfil, int idPerfilLike) {
 	   Query query=entityManager.createNativeQuery("SELECT contactos.*"
-	   		+ "FROM contactos WHERE (idPerfil=? AND idPerfilLike=?)"
-	   		+ "OR (idPerfil=? AND idPerfilLike=?");
-	   query.setParameter(0, idPerfil);
-	   query.setParameter(1, idPerfilLike);
+	   		+ "FROM contactos WHERE (id_perfil=? AND id_perfil_like=?)"
+	   		+ "OR (id_perfil=? AND id_perfil_like=?",Contactos.class);
+	   query.setParameter(1, idPerfil);
 	   query.setParameter(2, idPerfilLike);
-	   query.setParameter(3, idPerfil);
+	   query.setParameter(3, idPerfilLike);
+	   query.setParameter(4, idPerfil);
 	   return (List<Contactos>)query.getResultList();
 	}
 	/**
-	 * 
-	 * 
+	 * Metodo addMatch añade los id de los usuarios
+	 * Like 
+	 * @Param match objecto tipo Match
 	 */
 	public int addMatch (Match match) {
 		Query query=entityManager.createNativeQuery("INSERT INTO match"
-				+ "(idMatch,idPerfilMatch1,idPerfilMatch2) VALUES (?,?,?)",Match.class);
+				+ "(id_match,id_perfil_match1,id_perfil_match2) VALUES (?,?,?)",Match.class);
 		query.setParameter(2, match.getPerfil().getIdPerfil());
 		query.setParameter(1,match.getIdMatch());
 		query.setParameter(3,match.getPerfil2().getIdPerfil());
 		return query.executeUpdate();
 	}
-	
+	/**
+	 * Metodo de mostrar perfiles match con el usuario
+	 * @Param id identiificador de usuario
+	 * @return Lista de perfiles entrelazados
+	 */
+	public List<Perfil> listaMatch(int id){
+		Query query=entityManager.createNativeQuery("SELECT perfil.*"
+				+ "FROM (perfil JOIN match ON perfil.id_perfil=match.id_perfil_match_1)"
+				+ "WHERE match.id_perfil_match_1=?",Perfil.class);
+		query.setParameter(1,id);
+		return (List<Perfil>) query.getResultList();
+	}
 }

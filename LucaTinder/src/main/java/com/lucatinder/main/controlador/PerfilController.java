@@ -141,7 +141,13 @@ public class PerfilController {
 	public String addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilLike) {
 		service.addContacto(idPerfil,idPerfilLike);
 		return "perfil";
-	}		
+	}
+	
+	@GetMapping("/p")
+	public String p() {
+		service.addContacto(6,2);
+		return "perfil";
+	}
 	/**
 	 * Metodo listaContacto muestra los contactos
 	 * del usuario 
@@ -173,7 +179,6 @@ public class PerfilController {
 	 * @param idPerfilDisLike
 	 * @return perfil String pagina donde devuelve
 	 */
-	
 	@PostMapping("/addDescartes")
 	public String addDescartes(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilDisLike) {
 		service.addDescartes(idPerfil,idPerfilDisLike);
@@ -199,6 +204,22 @@ public class PerfilController {
 			System.out.println(" *******************BUCLE");
 		}
 		return "index"; 
+	}
+	/**
+	 * Metodo listaMatch muestra la lista de match
+	 * 
+	 * @param model
+	 * @param p Perfil
+	 * @return la pagina donde te envia
+	 */
+	@GetMapping("/listaMatch")
+	public String listaMatch(ModelMap model,Perfil p) {
+		logger.info("Muestrame perfiles Match ");
+		List<Perfil> Match=new ArrayList<Perfil>();
+		System.out.println("Estoy en listaMatch *************************");
+		Match=service.listaMatch(p.getIdPerfil());
+		model.addAttribute("match", Match);
+		return "index";
 	}
 
 }
