@@ -12,7 +12,7 @@ import com.lucatinder.main.modelo.Match;
  */
 public interface DaoPerfilCustom {
 	
-	public List<Perfil> mostrarSeleccion(int genero);
+	public List<Perfil> mostrarSeleccion(Perfil perfil);
 	public int addContacto(Contactos contacto);
 	public List<Perfil> listaContactos(int id);
 	public int addDescartes(Descartes descartes);

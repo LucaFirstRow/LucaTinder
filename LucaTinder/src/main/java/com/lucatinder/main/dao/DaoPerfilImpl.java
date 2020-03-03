@@ -29,10 +29,14 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * @param genero indica el genero de un usuario
 	 * @return List<Perfil> Devuelve una lista de perfiles
 	 */
-	public List<Perfil> mostrarSeleccion(int genero){
-		Query query=entityManager.createNativeQuery("SELECT *"
-				+ "FROM perfil WHERE perfil.genero<>?",Perfil.class);
-		query.setParameter(1,genero);
+	public List<Perfil> mostrarSeleccion(Perfil perfil){
+		Query query=entityManager.createNativeQuery("SELECT * FROM perfil "
+				+ "WHERE perfil.genero<>? AND "
+				+ "((id_perfil NOT IN (Select id_perfil_like from contactos where id_perfil=?)) "
+				+ "AND (id_perfil NOT IN (Select id_perfil_dislike from descartes where id_perfil=?)));",Perfil.class);
+		query.setParameter(1,perfil.getGenero());
+		query.setParameter(2,perfil.getIdPerfil());
+		query.setParameter(3,perfil.getIdPerfil());
 		return (List<Perfil>)query.getResultList();
 	}
 	/**
