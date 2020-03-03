@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity(name="materia")
 public class Materia implements Serializable {
@@ -26,9 +28,13 @@ public class Materia implements Serializable {
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id_materia", unique=true, nullable=false, length=10)
+	
     private int idMateria;
+	
     @Column(name="descripcion_materia", length=45)
     private String descripcionMateria;
+    
+    @JsonIgnore
     @OneToMany(mappedBy="materia")
     private Set<Intereses> intereses;
 
@@ -142,13 +148,11 @@ public class Materia implements Serializable {
      *
      * @return String representation of this instance
      */
-    @Override
-    public String toString() {
-        StringBuffer sb = new StringBuffer("[Materia |");
-        sb.append(" idMateria=").append(getIdMateria());
-        sb.append("]");
-        return sb.toString();
-    }
+    
+	@Override
+	public String toString() {
+		return "Materia [idMateria=" + idMateria + "]";
+	}
 
     /**
      * Return all elements of the primary key.
@@ -160,5 +164,7 @@ public class Materia implements Serializable {
         ret.put("idMateria", Integer.valueOf(getIdMateria()));
         return ret;
     }
+
+
 
 }

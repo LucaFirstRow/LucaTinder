@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity(name="perfil")
 public class Perfil implements Serializable {
@@ -42,18 +44,25 @@ public class Perfil implements Serializable {
     private String poblacion;
     @Column(length=45)
     private String foto;
+    
     @OneToMany(mappedBy="perfil")
     private Set<Intereses> intereses;
+    @JsonIgnore
     @OneToMany(mappedBy="perfil")
     private Set<Descartes> descartes;
+    @JsonIgnore
     @OneToMany(mappedBy="perfil")
     private Set<Contactos> contactos;
+    @JsonIgnore
     @OneToMany(mappedBy="perfil2")
     private Set<Descartes> descartes2;
+    @JsonIgnore
     @OneToMany(mappedBy="perfil2")
     private Set<Contactos> contactos2;
+    @JsonIgnore
     @OneToMany(mappedBy="perfil")
     private Set<Match> match;
+    @JsonIgnore
     @OneToMany(mappedBy="perfil2")
     private Set<Match> match2;
 
@@ -377,19 +386,8 @@ public class Perfil implements Serializable {
         result = 37*result + i;
         return result;
     }
-
-    /**
-     * Returns a debug-friendly String representation of this instance.
-     *
-     * @return String representation of this instance
-     */
-    @Override
-    public String toString() {
-        StringBuffer sb = new StringBuffer("[Perfil |");
-        sb.append(" idPerfil=").append(getIdPerfil());
-        sb.append("]");
-        return sb.toString();
-    }
+    
+    
 
     /**
      * Return all elements of the primary key.
@@ -401,5 +399,6 @@ public class Perfil implements Serializable {
         ret.put("idPerfil", Integer.valueOf(getIdPerfil()));
         return ret;
     }
+
 
 }

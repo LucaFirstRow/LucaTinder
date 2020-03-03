@@ -46,11 +46,10 @@ public class PerfilControllerRest {
 	 */
 	@PostMapping("/add")
 	ResponseEntity<String> añadirUsuario(@RequestBody Perfil perfil) {
-		//service.addPerfil(perfil);
+		service.addPerfil(perfil);
 		return ResponseEntity.ok().header("Header", "realizado con existo")
 		        .body("la operacion se realizo correctamente");
 	}
-
 	/**
 	 * 
 	 * @author Equipo 1
@@ -58,12 +57,10 @@ public class PerfilControllerRest {
 	 * 
 	 */
 	@GetMapping("/list")
-	public Collection<Perfil> login(@RequestBody User user) {
-		List<Perfil> seleccion=service.mostrarSeleccion(Integer.parseInt(user.getUserName()));
+	public Collection<Perfil> login(@RequestParam("id") int id) {
+		List<Perfil> seleccion=service.mostrarSeleccion(id);
 		return seleccion;
 	}
-	
-	
 	/**
 	 * 
 	 * @author Equipo 1
@@ -87,8 +84,10 @@ public class PerfilControllerRest {
 	@PostMapping("/addContacto")
 	public ResponseEntity<String> addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam("idPerfilLike") int idPerfilLike) {
 		Contactos nuevoLigue= new Contactos();
-		//nuevoLigue.setIdPerfil(idPerfil);
-		//nuevoLigue.setIdPerfilLike(idPerfilLike);
+		Perfil p = new Perfil();
+		Perfil plike = new Perfil();
+		p.setIdPerfil(idPerfil);
+		plike.setIdPerfil(idPerfil);
 		service.addContacto(nuevoLigue);
 		return ResponseEntity.ok().header("Header", "Contacto añadido con exito")
 		        .body("la operacion se realizo correctamente");
