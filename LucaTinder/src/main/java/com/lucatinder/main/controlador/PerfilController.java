@@ -5,14 +5,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import com.lucatinder.main.modelo.Contactos;
 import com.lucatinder.main.modelo.Perfil;
 import com.lucatinder.main.modelo.User;
@@ -27,6 +33,7 @@ import com.lucatinder.main.service.PerfilServices;
  */
 @Controller
 @RequestMapping("/perfil")
+@SessionAttributes("current_perfil")
 public class PerfilController {
  
 	/**
@@ -91,19 +98,33 @@ public class PerfilController {
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
 	}*/
+
 	@RequestMapping("/list")
 	public String login(@ModelAttribute("user") User user,ModelMap model) {
-		logger.info("***********Entra en el login");
-		//Creacion manual de una prueva de redireccion con la lista de perfiles para un usuario
-		List<Perfil> seleccion=service.mostrarSeleccion(Integer.parseInt(user.getUserName()));
-		model.addAttribute("seleccion",seleccion);
-		model.addAttribute("current_user", service.findOne(Integer.parseInt(user.getUserName())));
+		Perfil current_perfil  = (Perfil) model.get("current_perfil");
+
+		if(current_perfil==null) {
+			logger.info("***********Entra en el list");
+			int id_perfil=Integer.parseInt(user.getUserName());
+			System.out.println("ESTE ES EL PERFIL ::::::::::::::::"+id_perfil);
+			current_perfil=service.findOne(id_perfil).get();
+			model.addAttribute("current_perfil", current_perfil);
+			
+			//Creacion manual de una prueva de redireccion con la lista de perfiles para un usuario
+			List<Perfil> seleccion=service.mostrarSeleccion(id_perfil);
+			model.addAttribute("seleccion",seleccion);
+		}else {
+			
+			List<Perfil> seleccion=service.mostrarSeleccion(current_perfil.getIdPerfil());
+			model.addAttribute("seleccion",seleccion);
+			System.out.println("Setoy dentro del hay perfil::::::::::::::::"+current_perfil.getIdPerfil());
+		}
 		
 		return "perfil"; 
-		
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
 	}
+	
 	/**
 	 * Falta añadir esto
 	 * @param model
@@ -137,14 +158,17 @@ public class PerfilController {
 	 * @param idPerfilLike
 	 * @return perfil String pagina donde devuelve
 	 */
-	/*@PostMapping("/addContacto")
+	@PostMapping("/addContacto")
 	public String addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilLike) {
-		Contactos nuevoLigue= new Contactos();
-		nuevoLigue.setIdPerfil(idPerfil);
-		nuevoLigue.setIdPerfilLike(idPerfilLike);
-		service.addContacto(nuevoLigue);
+		service.addContacto(idPerfil,idPerfilLike);
 		return "perfil";
-	}		*/
+	}
+	
+	@GetMapping("/p")
+	public String p() {
+		service.addContacto(6,2);
+		return "perfil";
+	}
 	/**
 	 * Metodo listaContacto muestra los contactos
 	 * del usuario 
@@ -154,18 +178,69 @@ public class PerfilController {
 	 * @return la pagina donde se envia
 	 */
 	@GetMapping("/listaContactos")
-	public String listaContactos(ModelMap model,Perfil p) {
+	public String listaContactos(ModelMap model,@RequestParam("idPerfil") int idPerfil) {
 		logger.info("Muestrame perfiles like ");
+		
 		List<Perfil> contacto=new ArrayList<Perfil>();
 		System.out.println("Estoy en listaContactos *************************");
 		//listas=service.mostrarSeleccion(p.getIdPerfil());
-		contacto=service.listaContacto(p.getIdPerfil());
-		model.addAttribute("contacto", contacto);
-		for(int i=0;i<contacto.size();i++) {
-			System.out.println(contacto.get(i));
+		contacto=service.listaContacto(idPerfil);
+		System.out.println("--- guardo el contacto indicado");
+		model.addAttribute("contactos", contacto);
+		
+		return "contactos"; 
+	}
+	
+	/**
+	 * Metodo addDescartesañade usuarios descartados
+	 * en la tabla de Descartes
+	 * 
+	 * @param idPerfil
+	 * @param idPerfilDisLike
+	 * @return perfil String pagina donde devuelve
+	 */
+	@PostMapping("/addDescartes")
+	public String addDescartes(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilDisLike) {
+		service.addDescartes(idPerfil,idPerfilDisLike);
+		return "perfil";
+	}		
+	/**
+	 * Metodo listaDescartes muestra la lista de los 
+	 * descartados
+	 * 
+	 * @param model 
+	 * @param p Perfil 
+	 * @return la pagina donde se envia
+	 */
+	@GetMapping("/listaDescartes")
+	public String listaDescartes(ModelMap model,Perfil p) {
+		logger.info("Muestrame perfiles Dislike ");
+		List<Perfil> descartes=new ArrayList<Perfil>();
+		System.out.println("Estoy en listaDescartes *************************");
+		descartes=service.listaDescartes(p.getIdPerfil());
+		model.addAttribute("descartes", descartes);
+		for(int i=0;i<descartes.size();i++) {
+			System.out.println(descartes.get(i));
 			System.out.println(" *******************BUCLE");
 		}
 		return "index"; 
+	}
+	/**
+	 * Metodo listaMatch muestra la lista de match
+	 * del usuario
+	 * 
+	 * @param model
+	 * @param p Perfil
+	 * @return la pagina donde te envia
+	 */
+	@GetMapping("/listaMatch")
+	public String listaMatch(ModelMap model,Perfil p) {
+		logger.info("Muestrame perfiles Match ");
+		List<Perfil> Match=new ArrayList<Perfil>();
+		System.out.println("Estoy en listaMatch *************************");
+		Match=service.listaMatch(p.getIdPerfil());
+		model.addAttribute("match", Match);
+		return "index";
 	}
 
 }

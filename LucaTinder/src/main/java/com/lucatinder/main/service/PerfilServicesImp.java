@@ -1,6 +1,8 @@
 package com.lucatinder.main.service;
 
 import com.lucatinder.main.modelo.Contactos;
+import com.lucatinder.main.modelo.Descartes;
+import com.lucatinder.main.modelo.Match;
 import com.lucatinder.main.modelo.Perfil;
 import javax.transaction.Transactional;
 
@@ -53,7 +55,7 @@ public class PerfilServicesImp implements PerfilServices {
 	public List<Perfil> mostrarSeleccion(int id){
 		
 		Optional<Perfil> usuario=findOne(id);
-		return Usuario.mostrarSeleccion(usuario.get().getGenero());
+		return Usuario.mostrarSeleccion(usuario.get());
 	}
 	/**
 	 * Metodo editarPerfil permite modifiar un perfil,
@@ -69,7 +71,12 @@ public class PerfilServicesImp implements PerfilServices {
 	 * tabla contactos
 	 * @Param contacto Indica un nuevo contacto
 	 */
-	public void addContacto(Contactos contacto){
+	public void addContacto(int idPerfil,int idPerfilLike){
+		Optional<Perfil> perfil=findOne(idPerfil);
+		Optional<Perfil> perfil2=findOne(idPerfilLike);
+		Contactos contacto=new Contactos();
+		contacto.setPerfil(perfil.get());
+		contacto.setPerfil2(perfil2.get());
 		Usuario.addContacto(contacto);
 	}
 	/**
@@ -82,5 +89,55 @@ public class PerfilServicesImp implements PerfilServices {
 	   
 		return Usuario.listaContactos(id);
 	}
-
+	/**
+	 * Metodo addDescartes añade un nuevo contacto en la 
+	 * tabla contactos
+	 * @Param contacto Indica un nuevo contacto
+	 */
+	public void addDescartes(int idPerfil,int idPerfilDisLike){
+		Optional<Perfil> perfil=findOne(idPerfil);
+		Optional<Perfil> perfil2=findOne(idPerfilDisLike);
+		Descartes descartes=new Descartes();
+		descartes.setPerfil(perfil.get());
+		descartes.setPerfil2(perfil2.get());
+		Usuario.addDescartes(descartes);
+	}
+	/**
+	 * listaDescartes muestra la lista de descartes 
+	 * de un usuario
+	 * @Param id identificador usuario
+	 * @return Devulve una listade descartes
+	 */
+	public List<Perfil> listaDescartes(int id){
+	   
+		return Usuario.listaDescartes(id);
+	}
+    /**
+     * addMatch Comprueba si existe Match y si existe agrega a la
+     * tabla match
+     * 
+     * @Param idPerfil identificador Usuario
+     * @Param idPerfilLike identificador de UsuarioLike
+     */
+	public void addMatch(int idPerfil,int idPerfilLike) {
+		List<Contactos> p=Usuario.usuariosMatch(idPerfil,idPerfilLike);
+		if(p.size()==2) {
+			for(int i=0;i<p.size();i++) {
+				Match match=new Match();
+				match.setPerfil(p.get(i).getPerfil());
+				match.setPerfil2(p.get(i).getPerfil2());
+				Usuario.addMatch(match);
+			}
+		}
+	}
+	/**
+	 * listaMatch devuelve la lista de Match
+	 * del Usuario 
+	 * 
+	 * @param id identificador de Usuario
+	 * @return Devuelve una lista de Perfiles
+	 */
+	public List<Perfil> listaMatch(int id){
+		return Usuario.listaMatch(id);
+	}
 }
