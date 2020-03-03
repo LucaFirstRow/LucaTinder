@@ -62,9 +62,10 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * 
 	 */
 	public List<Perfil> listaContactos(int id){
+		System.out.println("----  Lista Contactos (al inicio)");
 		Query query=entityManager.createNativeQuery("SELECT perfil.*"
 				+ "FROM (perfil JOIN contactos ON perfil.id_perfil=contactos.id_perfil)"
-				+ "WHERE contactos.id_perfil=?");
+				+ "WHERE contactos.id_perfil=?",Perfil.class);
 		query.setParameter(1,id);
 		return (List<Perfil>) query.getResultList();
 	}
@@ -138,6 +139,9 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 				+ "FROM (perfil JOIN match ON perfil.id_perfil=match.id_perfil_match_1)"
 				+ "WHERE match.id_perfil_match_1=?",Perfil.class);
 		query.setParameter(1,id);
-		return (List<Perfil>) query.getResultList();
+		List<Perfil> perfiles =(List<Perfil>) query.getResultList();
+		System.out.println("---- "+perfiles);
+		System.out.println("---- Lista Contactos (fin)");	
+		return perfiles;
 	}
 }

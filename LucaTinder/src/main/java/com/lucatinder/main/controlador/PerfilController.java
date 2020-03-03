@@ -5,14 +5,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import com.lucatinder.main.modelo.Contactos;
 import com.lucatinder.main.modelo.Perfil;
 import com.lucatinder.main.modelo.User;
@@ -27,6 +33,7 @@ import com.lucatinder.main.service.PerfilServices;
  */
 @Controller
 @RequestMapping("/perfil")
+@SessionAttributes("current_perfil")
 public class PerfilController {
  
 	/**
@@ -91,18 +98,32 @@ public class PerfilController {
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
 	}*/
-	/*@RequestMapping("/list")
+
+	@RequestMapping("/list")
 	public String login(@ModelAttribute("user") User user,ModelMap model) {
-		logger.info("***********Entra en el login");
-		//Creacion manual de una prueva de redireccion con la lista de perfiles para un usuario
-		List<Perfil> seleccion=service.mostrarSeleccion(Integer.parseInt(user.getUserName()));
-		model.addAttribute("seleccion",seleccion);
-		model.addAttribute("current_user", service.findOne(Integer.parseInt(user.getUserName())));
+		Perfil current_perfil  = (Perfil) model.get("current_perfil");
+
+		if(current_perfil==null) {
+			logger.info("***********Entra en el list");
+			int id_perfil=Integer.parseInt(user.getUserName());
+			System.out.println("ESTE ES EL PERFIL ::::::::::::::::"+id_perfil);
+			current_perfil=service.findOne(id_perfil).get();
+			model.addAttribute("current_perfil", current_perfil);
+			
+			//Creacion manual de una prueva de redireccion con la lista de perfiles para un usuario
+			List<Perfil> seleccion=service.mostrarSeleccion(id_perfil);
+			model.addAttribute("seleccion",seleccion);
+		}else {
+			
+			List<Perfil> seleccion=service.mostrarSeleccion(current_perfil.getIdPerfil());
+			model.addAttribute("seleccion",seleccion);
+			System.out.println("Setoy dentro del hay perfil::::::::::::::::"+current_perfil.getIdPerfil());
+		}
 		
 		return "perfil"; 
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
-	}*/
+	}
 	
 	/**
 	 * Falta añadir esto
@@ -157,18 +178,17 @@ public class PerfilController {
 	 * @return la pagina donde se envia
 	 */
 	@GetMapping("/listaContactos")
-	public String listaContactos(ModelMap model,Perfil p) {
+	public String listaContactos(ModelMap model,@RequestParam("idPerfil") int idPerfil) {
 		logger.info("Muestrame perfiles like ");
+		
 		List<Perfil> contacto=new ArrayList<Perfil>();
 		System.out.println("Estoy en listaContactos *************************");
 		//listas=service.mostrarSeleccion(p.getIdPerfil());
-		contacto=service.listaContacto(p.getIdPerfil());
-		model.addAttribute("contacto", contacto);
-		for(int i=0;i<contacto.size();i++) {
-			System.out.println(contacto.get(i));
-			System.out.println(" *******************BUCLE");
-		}
-		return "index"; 
+		contacto=service.listaContacto(idPerfil);
+		System.out.println("--- guardo el contacto indicado");
+		model.addAttribute("contactos", contacto);
+		
+		return "contactos"; 
 	}
 	
 	/**

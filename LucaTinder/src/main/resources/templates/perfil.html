@@ -19,17 +19,17 @@
                     <ul class="list-unstyled components menuHorizontal mb-5">
                     <div class="iconoMenu">
                         <li class="active">
-                            <a th:href="@{/}"  class="enlacePrimario"><span class="fa fa-home"></span><br/> Home</a>
+                            <a th:href="@{/logOut}"  class="enlacePrimario"><span class="fa fa-home"></span><br/> Home</a>
                         </li>
                     </div>
                     <div class="iconoMenu">
                         <li class="active">
-                            <a href="#"  class="enlacePrimario"><span class="fas fa-search"></span><br/>Perfiles</a>
+                            <a th:href="@{/perfil/list}"  class="enlacePrimario"><span class="fas fa-search"></span><br/>Perfiles</a>
                         </li>
                     </div>
                     <div class="iconoMenu">
                         <li>
-                            <a href="#" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a>
+                            <a th:href="@{/perfil/listaContactos(idPerfil=${current_perfil.idPerfil})}" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a>
                         </li>
                     </div>
                     <div class="iconoMenu">
@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-12 botonera">
                                 <div class="col-6 botonetaDisLike"><a href="" class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
-                                <div class="col-6 botonetaLike"><a th:href="@{/perfil/addContacto(id_usuario=${current_user.idPerfil})(id_perfilLike=${perfil.idPerfil})}" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
+                                <div class="col-6 botonetaLike"><a th:href="@{/perfil/addContacto(idPerfil=${current_perfil.idPerfil})(idPerfilLike=${perfil.idPerfil})}" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
                             </div>
                         </div>
                     </div>
