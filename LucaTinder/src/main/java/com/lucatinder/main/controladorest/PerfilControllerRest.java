@@ -88,7 +88,7 @@ public class PerfilControllerRest {
 		Perfil plike = new Perfil();
 		p.setIdPerfil(idPerfil);
 		plike.setIdPerfil(idPerfil);
-		service.addContacto(nuevoLigue);
+		//service.addContacto(nuevoLigue);
 		return ResponseEntity.ok().header("Header", "Contacto añadido con exito")
 		        .body("la operacion se realizo correctamente");
 	}	
