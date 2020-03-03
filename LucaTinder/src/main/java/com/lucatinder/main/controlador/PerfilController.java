@@ -91,7 +91,7 @@ public class PerfilController {
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
 	}*/
-	@RequestMapping("/list")
+	/*@RequestMapping("/list")
 	public String login(@ModelAttribute("user") User user,ModelMap model) {
 		logger.info("***********Entra en el login");
 		//Creacion manual de una prueva de redireccion con la lista de perfiles para un usuario
@@ -100,10 +100,10 @@ public class PerfilController {
 		model.addAttribute("current_user", service.findOne(Integer.parseInt(user.getUserName())));
 		
 		return "perfil"; 
-		
 		//Pagina donde muestra los perfiles
 		//no se especifica como se llama la imagen
-	}
+	}*/
+	
 	/**
 	 * Falta añadir esto
 	 * @param model

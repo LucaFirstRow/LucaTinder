@@ -55,7 +55,7 @@ public class PerfilServicesImp implements PerfilServices {
 	public List<Perfil> mostrarSeleccion(int id){
 		
 		Optional<Perfil> usuario=findOne(id);
-		return Usuario.mostrarSeleccion(usuario.get().getGenero());
+		return Usuario.mostrarSeleccion(usuario.get());
 	}
 	/**
 	 * Metodo editarPerfil permite modifiar un perfil,
