@@ -180,6 +180,9 @@ form{
     border-radius: 10px;
     padding: 0 !important;
 }
+.card-text{
+	font-size: small;
+}
 .blockCardPerfil{
     display: flex;
 }

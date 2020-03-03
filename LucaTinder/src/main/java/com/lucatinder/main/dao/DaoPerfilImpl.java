@@ -28,8 +28,10 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * @return List<Perfil> Devuelve una lista de perfiles
 	 */
 	public List<Perfil> mostrarSeleccion(int genero){
+		
 		Query query=entityManager.createNativeQuery("SELECT *"
 				+ "FROM perfil WHERE perfil.genero<>?",Perfil.class);
+			
 		query.setParameter(1,genero);
 		return (List<Perfil>)query.getResultList();
 	}
@@ -56,10 +58,15 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * 
 	 */
 	public List<Perfil> listaContactos(int id){
+		System.out.println("----  Lista Contactos (al inicio)");
 		Query query=entityManager.createNativeQuery("SELECT perfil.*"
-				+ "FROM (perfil JOIN contactos ON perfil.idPerfil=contactos.idPerfil)"
-				+ "WHERE contactos.idPerfil=?");
+				+ "FROM (perfil JOIN contactos ON perfil.id_perfil=contactos.id_perfil)"
+				+ "WHERE contactos.id_perfil=?",Perfil.class);
+		System.out.println("---- Lista Contactos (query creada)");	
 		query.setParameter(1,id);
-		return (List<Perfil>) query.getResultList();
+		List<Perfil> perfiles =(List<Perfil>) query.getResultList();
+		System.out.println("---- "+perfiles);
+		System.out.println("---- Lista Contactos (fin)");	
+		return perfiles;
 	}
 }
