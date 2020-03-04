@@ -63,9 +63,11 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 */
 	public List<Perfil> listaContactos(int id){
 		System.out.println("----  Lista Contactos (al inicio)");
-		Query query=entityManager.createNativeQuery("SELECT perfil.*"
+		/*Query query=entityManager.createNativeQuery("SELECT perfil.*"
 				+ "FROM (perfil JOIN contactos ON perfil.id_perfil=contactos.id_perfil)"
-				+ "WHERE contactos.id_perfil=?",Perfil.class);
+				+ "WHERE contactos.id_perfil=?",Perfil.class);*/
+		Query query=entityManager.createNativeQuery("SELECT perfil.* FROM  contactos Join perfil on perfil.id_perfil=contactos.id_perfil_like where contactos.id_perfil=?",Perfil.class);
+		
 		query.setParameter(1,id);
 		return (List<Perfil>) query.getResultList();
 	}
@@ -92,9 +94,15 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * 
 	 */
 	public List<Perfil> listaDescartes(int id){
-		Query query=entityManager.createNativeQuery("SELECT perfil.*"
+		Query query=entityManager.createNativeQuery("SELECT perfil.* FROM  descartes Join perfil on perfil.id_perfil=descartes.id_perfil_dislike where descartes.id_perfil=?",Perfil.class);
+				
+				
+				/*"SELECT perfil.*"
 				+ "FROM (perfil JOIN descartes ON perfil.id_perfil=descartes.id_perfil)"
-				+ "WHERE descartes.id_perfil=?",Perfil.class);
+				+ "WHERE descartes.id_perfil=?",Perfil.class);*/
+		
+		
+				;
 		query.setParameter(1,id);
 		return (List<Perfil>) query.getResultList();
 	}
