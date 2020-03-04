@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.lucatinder.main.modelo.Materia;
@@ -20,4 +20,11 @@ import com.lucatinder.main.modelo.Materia;
 public class DaoMateriaImpl implements DaoMateriaCustom {
 	@PersistenceContext 
 	EntityManager entityManager;
+	
+	public List<Materia> listaMateria(int id){
+		Query query=entityManager.createNativeQuery("select materia.id_materia, materia.descripcion_materia "
+				+ "FROM  intereses join materia  on intereses.id_materia= materia.id_materia where  intereses.id_perfil=?;",Materia.class);
+		query.setParameter(1, id);
+		return (List<Materia>) query.getResultList();
+	}
 }
