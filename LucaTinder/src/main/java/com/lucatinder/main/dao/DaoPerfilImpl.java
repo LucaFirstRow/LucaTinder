@@ -63,9 +63,11 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 */
 	public List<Perfil> listaContactos(int id){
 		System.out.println("----  Lista Contactos (al inicio)");
-		Query query=entityManager.createNativeQuery("SELECT perfil.*"
+		/*Query query=entityManager.createNativeQuery("SELECT perfil.*"
 				+ "FROM (perfil JOIN contactos ON perfil.id_perfil=contactos.id_perfil)"
-				+ "WHERE contactos.id_perfil=?",Perfil.class);
+				+ "WHERE contactos.id_perfil=?",Perfil.class);*/
+		Query query=entityManager.createNativeQuery("SELECT perfil.* FROM  contactos Join perfil on perfil.id_perfil=contactos.id_perfil_like where contactos.id_perfil=?",Perfil.class);
+		
 		query.setParameter(1,id);
 		return (List<Perfil>) query.getResultList();
 	}
@@ -92,9 +94,15 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * 
 	 */
 	public List<Perfil> listaDescartes(int id){
-		Query query=entityManager.createNativeQuery("SELECT perfil.*"
+		Query query=entityManager.createNativeQuery("SELECT perfil.* FROM  descartes Join perfil on perfil.id_perfil=descartes.id_perfil_dislike where descartes.id_perfil=?",Perfil.class);
+				
+				
+				/*"SELECT perfil.*"
 				+ "FROM (perfil JOIN descartes ON perfil.id_perfil=descartes.id_perfil)"
-				+ "WHERE descartes.id_perfil=?",Perfil.class);
+				+ "WHERE descartes.id_perfil=?",Perfil.class);*/
+		
+		
+				;
 		query.setParameter(1,id);
 		return (List<Perfil>) query.getResultList();
 	}
@@ -122,7 +130,7 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * @Param match objecto tipo Match
 	 */
 	public int addMatch (Match match) {
-		Query query=entityManager.createNativeQuery("INSERT INTO match"
+		Query query=entityManager.createNativeQuery("INSERT INTO maches"
 				+ "(id_match,id_perfil_match1,id_perfil_match2) VALUES (?,?,?)",Match.class);
 		query.setParameter(2, match.getPerfil().getIdPerfil());
 		query.setParameter(1,match.getIdMatch());
@@ -135,9 +143,10 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * @return Lista de perfiles entrelazados
 	 */
 	public List<Perfil> listaMatch(int id){
-		Query query=entityManager.createNativeQuery("SELECT perfil.*"
+		/*Query query=entityManager.createNativeQuery("SELECT perfil.*"
 				+ "FROM (perfil JOIN match ON perfil.id_perfil=match.id_perfil_match_1)"
-				+ "WHERE match.id_perfil_match_1=?",Perfil.class);
+				+ "WHERE match.id_perfil_match_1=?",Perfil.class);*/
+		Query query=entityManager.createNativeQuery("SELECT perfil.* FROM (perfil JOIN maches ON perfil.id_perfil=maches.id_perfil_match_2) WHERE maches.id_perfil_match_1=?",Perfil.class);
 		query.setParameter(1,id);
 		List<Perfil> perfiles =(List<Perfil>) query.getResultList();
 		System.out.println("---- "+perfiles);
