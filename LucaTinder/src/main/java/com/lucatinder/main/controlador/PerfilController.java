@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -31,6 +32,7 @@ import com.lucatinder.main.service.PerfilServices;
  * y la vista.
  *
  */
+@CrossOrigin(origins = "http://localhost:4200")
 @Controller
 @RequestMapping("/perfil")
 @SessionAttributes("current_perfil")

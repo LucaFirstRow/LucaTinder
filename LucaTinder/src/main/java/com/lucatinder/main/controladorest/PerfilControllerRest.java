@@ -31,6 +31,7 @@ import com.lucatinder.main.service.PerfilServices;
  * se encarga de controlar el flujo de datos de perfil
  * y la vista.
  */
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/perfilrest")
 public class PerfilControllerRest {
