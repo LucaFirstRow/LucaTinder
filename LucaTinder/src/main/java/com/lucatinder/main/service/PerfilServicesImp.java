@@ -78,6 +78,7 @@ public class PerfilServicesImp implements PerfilServices {
 		contacto.setPerfil(perfil.get());
 		contacto.setPerfil2(perfil2.get());
 		Usuario.addContacto(contacto);
+		addMatch(idPerfil, idPerfilLike);
 	}
 	/**
 	 * listaContacto muestra una lista de contactos 

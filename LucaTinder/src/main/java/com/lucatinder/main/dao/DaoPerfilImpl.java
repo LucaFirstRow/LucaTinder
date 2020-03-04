@@ -130,7 +130,7 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * @Param match objecto tipo Match
 	 */
 	public int addMatch (Match match) {
-		Query query=entityManager.createNativeQuery("INSERT INTO match"
+		Query query=entityManager.createNativeQuery("INSERT INTO maches"
 				+ "(id_match,id_perfil_match1,id_perfil_match2) VALUES (?,?,?)",Match.class);
 		query.setParameter(2, match.getPerfil().getIdPerfil());
 		query.setParameter(1,match.getIdMatch());
@@ -143,9 +143,10 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * @return Lista de perfiles entrelazados
 	 */
 	public List<Perfil> listaMatch(int id){
-		Query query=entityManager.createNativeQuery("SELECT perfil.*"
+		/*Query query=entityManager.createNativeQuery("SELECT perfil.*"
 				+ "FROM (perfil JOIN match ON perfil.id_perfil=match.id_perfil_match_1)"
-				+ "WHERE match.id_perfil_match_1=?",Perfil.class);
+				+ "WHERE match.id_perfil_match_1=?",Perfil.class);*/
+		Query query=entityManager.createNativeQuery("SELECT perfil.* FROM (perfil JOIN maches ON perfil.id_perfil=maches.id_perfil_match_2) WHERE maches.id_perfil_match_1=?",Perfil.class);
 		query.setParameter(1,id);
 		List<Perfil> perfiles =(List<Perfil>) query.getResultList();
 		System.out.println("---- "+perfiles);
