@@ -16,6 +16,7 @@ import org.springframework.ui.ModelMap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
@@ -24,6 +25,7 @@ import com.lucatinder.main.modelo.Contactos;
 import com.lucatinder.main.modelo.Perfil;
 import com.lucatinder.main.modelo.User;
 import com.lucatinder.main.service.PerfilServices;
+
 /**
  * 
  * @author Equipo 1
@@ -250,6 +252,21 @@ public class PerfilController {
 		}
 		model.addAttribute("match", Match);
 		return "match";
+	}
+	@GetMapping("/detalles")
+	public String detalles(ModelMap model,@RequestParam("id_perfil") int idPerfil) {
+		logger.info("Entra en el detalles perfil ");
+		 
+		try {
+			Optional <Perfil> datosPerfil =service.findOne(idPerfil);
+			//Get Listado de materias de un usuario;
+			
+			System.out.println("ESTAS SON LAS MATERIAS:" + datosPerfil.get().getIntereses());
+			model.addAttribute("datosPerfil",datosPerfil.get());
+		} catch (Exception e) {
+			return "error";
+		}
+		return "detalles";
 	}
 
 }

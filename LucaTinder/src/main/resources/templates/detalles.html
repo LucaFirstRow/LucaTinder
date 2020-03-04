@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html   xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/resources/css/mainIndex.css">
+    <link rel="stylesheet" href="/resources/css/card.css">
+    <link href="/resources/css/font-awesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+    <link href="/resources/css/font-awesome/css/brands.css" rel="stylesheet">
+    <link href="/resources/css/font-awesome/css/solid.css" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Pacifico|Poppins:400,700i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>LucaTinder</title>
+</head>
+<body>
+    <div class="fondo"></div>
+    
+    
+    <div class="wrapper d-flex">
+           <nav class="sideNav">
+                    <ul class="list-unstyled components menuHorizontal mb-5">
+                    <div class="iconoMenu">
+                        <li class="active">
+                            <a th:href="@{/logOut}"  class="enlacePrimario"><span class="fa fa-home"></span><br/> Home</a>
+                        </li>
+                    </div>
+                    <div class="iconoMenu">
+                        <li class="active">
+                            <a th:href="@{/perfil/list}"  class="enlacePrimario"><span class="fas fa-search"></span><br/>Perfiles</a>
+                        </li>
+                    </div>
+                    <div class="iconoMenu">
+                        <li>
+                            <a th:href="@{/perfil/listaContactos(idPerfil=${current_perfil.idPerfil})}" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a>
+                        </li>
+                    </div>
+                    <div class="iconoMenu">
+                        <li>
+                            <a th:href="@{/perfil/listaDescartes(idPerfil=${current_perfil.idPerfil})}"  class="enlacePrimario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a>
+                        </li>
+                    </div>
+                    <div class="iconoMenu">
+                            <li>
+                                <a th:href="@{/perfil/listaMatch(idPerfil=${current_perfil.idPerfil})}"  class="enlacePrimario"><span class="fas fa-heart"></span><br/>Macht</a>
+                            </li>
+                        </div>
+                    <div class="iconoMenu">
+                        <li>
+                            <a  th:href="@{/perfil/edit(idPerfil=${current_perfil.idPerfil})}"  class="enlacePrimario"><span class="fas fa-user-edit"></span><br/> Mis Datos</a>
+                        </li>
+                    </div>
+                    </ul>
+            </nav>
+        <div class="container" id="bloqueContentPerfil">
+            <div class="col-8 mt-4">
+                <header class="header p-0">
+                    <img class="logo" src="/resources/images/logo.png">
+                </header>
+            </div> 
+            <div class="col-12">
+                <h1 class="title text-center">Editar mi Perfil</h1>
+            </div>
+            <div class="row mt-4" th:object="${datosPerfil}">
+                <div class="col-12">
+                    <div class="col-md-12">
+                        <div class="card card-profile">
+                            <div class="d-flex">
+                                <div class="card-image col-4">
+                                    <a  href="#"> <img class="img" th:src="${datosPerfil.foto}">
+                                    </a>
+                                </div>
+                                <div class="col-6 mt-4">
+                                    <h2 class="titleCard" th:text="${datosPerfil.nombre}"></h2>
+                                    <h2 class="titleCard" th:text="${datosPerfil.edad}"></h2>  
+                                    <h2 class="titleCard" th:text="${datosPerfil.poblacion}"></h2>  
+                                </div>
+                            </div>
+                            
+                            <div class="table">
+                                <p class="card-description text-left"  th:text="${datosPerfil.descripcion}">  </p>
+                                <div class="ftr"> 
+<!-- 	                                <div th:each="materia : ${datosPerfil.intereses}"> -->
+<!-- 	                                	<h3 th:text="${materia.descripcionMateria}"></h3> -->
+	                                
+<!-- 	                                </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
+</body>
+</html>
