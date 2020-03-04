@@ -10,4 +10,7 @@ import com.lucatinder.main.modelo.Materia;
  *La clase DaoMateria es la interfaz de los datos
  */
 public interface DaoMateriaCustom {
+	
+	public List<Materia> listaMateria(int id );
 }
+

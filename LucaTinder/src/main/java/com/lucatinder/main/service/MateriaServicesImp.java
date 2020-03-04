@@ -28,8 +28,8 @@ public class MateriaServicesImp implements MateriaServices {
 	 * @return List<Materia> Devuelve una Lista <Materia> con todas la materias del sistema 
 	 */
 	@Override
-	public List<Materia> allMateria() {
-		return dMaterias.findAll();
+	public List<Materia> getMateria(int id) {
+		return dMaterias.listaMateria(id);
 	}
 
 	
