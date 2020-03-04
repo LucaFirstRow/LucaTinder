@@ -56,7 +56,6 @@ public class PerfilController {
 	 * @param perfil
 	 * @return pagina /perfil/add
 	 */
-
 	@GetMapping("/addPerfilForm")
 	 public String addPerfilForm(@ModelAttribute("perfil")Perfil perfil) {
 	    System.out.println("ENTRA ************************************************");
