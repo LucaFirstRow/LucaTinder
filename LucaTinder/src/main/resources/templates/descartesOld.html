@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html   xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/resources/css/mainIndex.css">
-    <link rel="stylesheet" href="/resources/css/card.css">
     <link href="/resources/css/font-awesome/css/all.css" rel="stylesheet"> <!--load all styles -->
     <link href="/resources/css/font-awesome/css/brands.css" rel="stylesheet">
     <link href="/resources/css/font-awesome/css/solid.css" rel="stylesheet">    
@@ -18,7 +17,7 @@
     
     
     <div class="wrapper d-flex">
-           <nav class="sideNav">
+                       <nav class="sideNav">
                     <ul class="list-unstyled components menuHorizontal mb-5">
                     <div class="iconoMenu">
                         <li class="active">
@@ -52,6 +51,39 @@
                     </div>
                     </ul>
             </nav>
+                    <div class="container" id="bloqueContentPerfil">
+            <div class="col-8 mt-4">
+                <header class="header p-0">
+                    <img class="logo" src="/resources/images/logo.png">
+                </header>
+            </div> 
+            <div class="col-12">
+                <h1 class="title text-center">Mis Descartes</h1>
+            </div>
+            <div class="row mt-4">
+                <div th:each="perfil : ${descartes}" class=" col-sm-12 col-lg-6 mb-2">
+                    <div class="cardPerfil col-12">
+                        <div class="col-3 p-0"><img th:src="${perfil.foto}" class="imgCard" alt="..."></div>
+                        <div class="col-9 p-0">
+                            <div class="p-2">
+                                <div class="col-12 d-flex">
+                                <div class="col-6"><h5 class="card-title" th:text="${perfil.nombre}"></h5></div>
+                                <div class="col-6" th:text="${perfil.edad}"> </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text" th:text="${perfil.descripcionCorta}"></p>
+                                </div>  
+                            </div>
+                            <div class="col-12 botonera">
+                            	<div class="col-6 botonetaDisLike"><a href="" class="enlaceSecundario"><span class="fas fa-trash"></span><br/>Remove</a></div>
+                                <div class="col-6 botonetaLike"><a th:href="@{/perfil/detalles(id_perfil=${perfil.idPerfil})}" class="enlacePrimario"><span class="far fa-eye"></span><br/> Ver Detalles</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!--  
         <div class="container" id="bloqueContentPerfil">
             <div class="col-8 mt-4">
                 <header class="header p-0">
@@ -59,38 +91,32 @@
                 </header>
             </div> 
             <div class="col-12">
-                <h1 class="title text-center">Editar mi Perfil</h1>
+                <h1 class="title text-center">Contactos</h1>
             </div>
-            <div class="row mt-4" th:object="${datosPerfil}">
-                <div class="col-12">
-                    <div class="col-md-12">
-                        <div class="card card-profile">
-                            <div class="d-flex">
-                                <div class="card-image col-4">
-                                    <a  href="#"> <img class="img" th:src="${datosPerfil.foto}">
-                                    </a>
+            <div class="row mt-4">
+              <div class="row mt-4">
+                <div th:each="perfil : ${contactos}" class=" col-sm-12 col-lg-6 mb-2">
+                    <div class="cardPerfil col-12">
+                        <div class="col-3 p-0"><img th:src="${perfil.foto}" class="imgCard" alt="..."></div>
+                        <div class="col-9 p-0">
+                            <div class="p-2">
+                                <div class="col-12 d-flex">
+                                <div class="col-6"><h5 class="card-title" th:text="${perfil.nombre}"></h5></div>
+                                <div class="col-6" th:text="${perfil.edad}"> </div>
                                 </div>
-                                <div class="col-6 mt-5">
-                                    <h2 class="titleCard" th:text="${datosPerfil.nombre}"></h2>
-                                    <h2 class="titleCard" th:text="${datosPerfil.edad}"></h2>  
-                                    <h2 class="titleCard" th:text="${datosPerfil.poblacion}"></h2>  
-                                </div>
+                                <div class="col-12">
+                                    <p class="card-text" th:text="${perfil.descripcionCorta}"></p>
+                                </div>  
                             </div>
-                            
-                            <div class="table">
-                                <p class="card-description text-left"  th:text="${datosPerfil.descripcion}">  </p>
-                                <div class="ftr d-flex"> 
-	                                <div class="tag mt-4" th:each="materia : ${listaMaterias}">
-                                        <div><i class="fas fa-tag tagText mr-2"></i></div>
-                                        <div><h5 class="tagText" th:text="${materia.descripcionMateria}"></h5></div>
-	                                </div> 
-                                </div>
+                            <div class="col-12 botonera">
+                                <div class="col-12 botonetaLike"><a th:href="@{/perfil/detalle(id_perfil=${perfil.idPerfil})}" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Detalles</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+        </div>-->
     </div>
                 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

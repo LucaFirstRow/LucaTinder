@@ -51,6 +51,7 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 		query.setParameter(1, contacto.getPerfil().getIdPerfil());
 		query.setParameter(3,contacto.getIdContacto());
 		query.setParameter(2,contacto.getPerfil2().getIdPerfil());
+		System.out.println("ESTO DESPUES DE LA CONSULTA " + contacto.getPerfil().getIdPerfil() + "   ES TE EL "+contacto.getPerfil2().getIdPerfil());
 		return query.executeUpdate();
 	}
 	/**
@@ -115,9 +116,10 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * @return List<Contactos> Devuelve una lista de contactos   
 	 */
 	public List<Contactos> usuariosMatch(int idPerfil, int idPerfilLike) {
+		System.out.println("Entra en el Comprobar USUARIOS ");
 	   Query query=entityManager.createNativeQuery("SELECT contactos.*"
 	   		+ "FROM contactos WHERE (id_perfil=? AND id_perfil_like=?)"
-	   		+ "OR (id_perfil=? AND id_perfil_like=?",Contactos.class);
+	   		+ "OR (id_perfil=? AND id_perfil_like=?)",Contactos.class);
 	   query.setParameter(1, idPerfil);
 	   query.setParameter(2, idPerfilLike);
 	   query.setParameter(3, idPerfilLike);
@@ -130,8 +132,9 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 * @Param match objecto tipo Match
 	 */
 	public int addMatch (Match match) {
+		System.out.println("ENTRA EN ADD MACHT");
 		Query query=entityManager.createNativeQuery("INSERT INTO maches"
-				+ "(id_match,id_perfil_match1,id_perfil_match2) VALUES (?,?,?)",Match.class);
+				+ "(id_match,id_perfil_match_1,id_perfil_match_2) VALUES (?,?,?)",Match.class);
 		query.setParameter(2, match.getPerfil().getIdPerfil());
 		query.setParameter(1,match.getIdMatch());
 		query.setParameter(3,match.getPerfil2().getIdPerfil());

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/resources/css/mainIndex.css">
+    <link rel="stylesheet" href="/resources/css/card.css">
     <link href="/resources/css/font-awesome/css/all.css" rel="stylesheet"> <!--load all styles -->
     <link href="/resources/css/font-awesome/css/brands.css" rel="stylesheet">
     <link href="/resources/css/font-awesome/css/solid.css" rel="stylesheet">    
@@ -58,23 +59,36 @@
             <div class="col-12">
                 <h1 class="title text-center">Perfiles</h1>
             </div>
+            
+            
+            
             <div class="row mt-4">
-                <div th:each="perfil : ${seleccion}" class=" col-sm-12 col-lg-6 mb-2">
-                    <div class="cardPerfil col-12">
-                        <div class="col-3 p-0"><img th:src="${perfil.foto}" class="imgCard" alt="..."></div>
-                        <div class="col-9 p-0">
-                            <div class="p-2">
-                                <div class="col-12 d-flex">
-                                <div class="col-6"><h5 class="card-title" th:text="${perfil.nombre}"></h5></div>
-                                <div class="col-6" th:text="${perfil.edad}"> </div>
+                <div class="col-sm-12 col-md-6" th:each="perfil : ${seleccion}">
+                    <div class="col-md-12">
+                        <div class="card card-profile">
+                        	<a th:href="@{/perfil/detalles(id_perfil=${perfil.idPerfil})}">
+                            <div class="d-flex">
+                                <div class="card-image col-4">
+                                	
+                                    <img class="img" th:src="${perfil.foto}">
+                                
                                 </div>
-                                <div class="col-12">
-                                    <p class="card-text" th:text="${perfil.descripcionCorta}"></p>
-                                </div>  
+                          
+                                <div class="col-6 mt-3">
+                                    <h4 class="titleSmallCard" th:text="${perfil.nombre}"></h4>
+                                    <h4 class="titleSmallCard" th:text="${perfil.edad}"></h4>  
+                                    <h4 class="titleSmallCard" th:text="${perfil.poblacion}"></h4>  
+                                </div>
                             </div>
-                            <div class="col-12 botonera">
+                            </a>
+                            
+                            <div class="table">
+                                <p class="card-description text-left text-m"  th:text="${perfil.descripcionCorta}">  </p>
+                            </div>
+                            <div>
+                                <div class="col-12 botonera">
                                 <div class="col-6 botonetaDisLike">
-<!--                                 <a href="" class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a> -->
+                                <!--<a href="" class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a> -->
                                  <form class="col-12" th:action="@{/perfil/addDescartes}" method="post">
 	                                <!--  <a th:href="@{/perfil/addContacto?idPerfil={idPerfil}?idPerfilLike={idPerfilLike} (idPerfil=${current_perfil.idPerfil} ,idPerfilLike=${perfil.idPerfil})}" class="enlacePrimario">
 	                                <span class="far fa-thumbs-up"></span><br/> 
@@ -102,10 +116,12 @@
 	                                
                            		
                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+    
         </div>
     </div>
                 

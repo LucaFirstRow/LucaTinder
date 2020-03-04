@@ -22,8 +22,10 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import com.lucatinder.main.modelo.Contactos;
+import com.lucatinder.main.modelo.Materia;
 import com.lucatinder.main.modelo.Perfil;
 import com.lucatinder.main.modelo.User;
+import com.lucatinder.main.service.MateriaServices;
 import com.lucatinder.main.service.PerfilServices;
 
 /**
@@ -46,6 +48,12 @@ public class PerfilController {
 	 */
 	@Autowired
 	private PerfilServices service;
+	/**
+	 * {@value #service} MateriaServices se declara esta variable para
+	 *  ofrecer los servicios de materia
+	 */
+	@Autowired
+	private MateriaServices serviceMateria;
 	/**
 	 * {@value # logger}Logger  se encarga de mostrar informaciones en la consola.
 	 * Su funcionalidad es indicar si los metodos se ha ejecutado correctamente.
@@ -260,9 +268,10 @@ public class PerfilController {
 		try {
 			Optional <Perfil> datosPerfil =service.findOne(idPerfil);
 			//Get Listado de materias de un usuario;
-			
+			List<Materia> listMaterias= (List<Materia>)serviceMateria.getMateria(idPerfil);
 			System.out.println("ESTAS SON LAS MATERIAS:" + datosPerfil.get().getIntereses());
 			model.addAttribute("datosPerfil",datosPerfil.get());
+			model.addAttribute("listaMaterias",listMaterias);
 		} catch (Exception e) {
 			return "error";
 		}
