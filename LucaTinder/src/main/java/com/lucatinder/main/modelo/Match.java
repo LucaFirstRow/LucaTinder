@@ -11,9 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity(name="match")
+@Table(name="maches")
 public class Match implements Serializable {
 
    
@@ -24,9 +28,11 @@ public class Match implements Serializable {
 	@Id
     @Column(name="id_match", unique=true, nullable=false, length=10)
     private int idMatch;
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name="id_perfil_match_1")
     private Perfil perfil;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="id_perfil_match_2")
     private Perfil perfil2;
