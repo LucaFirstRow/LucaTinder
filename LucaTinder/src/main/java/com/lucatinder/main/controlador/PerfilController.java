@@ -102,23 +102,27 @@ public class PerfilController {
 	@RequestMapping("/list")
 	public String login(@ModelAttribute("user") User user,ModelMap model) {
 		Perfil current_perfil  = (Perfil) model.get("current_perfil");
-
-		if(current_perfil==null) {
-			logger.info("***********Entra en el list");
-			int id_perfil=Integer.parseInt(user.getUserName());
-			System.out.println("ESTE ES EL PERFIL ::::::::::::::::"+id_perfil);
-			current_perfil=service.findOne(id_perfil).get();
-			model.addAttribute("current_perfil", current_perfil);
-			
-			//Creacion manual de una prueva de redireccion con la lista de perfiles para un usuario
-			List<Perfil> seleccion=service.mostrarSeleccion(id_perfil);
-			model.addAttribute("seleccion",seleccion);
-		}else {
-			
-			List<Perfil> seleccion=service.mostrarSeleccion(current_perfil.getIdPerfil());
-			model.addAttribute("seleccion",seleccion);
-			System.out.println("Setoy dentro del hay perfil::::::::::::::::"+current_perfil.getIdPerfil());
+		try {
+			if(current_perfil==null) {
+				logger.info("***********Entra en el list");
+				int id_perfil=Integer.parseInt(user.getUserName());
+				System.out.println("ESTE ES EL PERFIL ::::::::::::::::"+id_perfil);
+				current_perfil=service.findOne(id_perfil).get();
+				model.addAttribute("current_perfil", current_perfil);
+				
+				//Creacion manual de una prueva de redireccion con la lista de perfiles para un usuario
+				List<Perfil> seleccion=service.mostrarSeleccion(id_perfil);
+				model.addAttribute("seleccion",seleccion);
+			}else {
+				
+				List<Perfil> seleccion=service.mostrarSeleccion(current_perfil.getIdPerfil());
+				model.addAttribute("seleccion",seleccion);
+				System.out.println("Setoy dentro del hay perfil::::::::::::::::"+current_perfil.getIdPerfil());
+			}
+		} catch (Exception e) {
+			return "redirect:/"; 
 		}
+		
 		
 		return "perfil"; 
 		//Pagina donde muestra los perfiles
@@ -159,16 +163,15 @@ public class PerfilController {
 	 * @return perfil String pagina donde devuelve
 	 */
 	@PostMapping("/addContacto")
-	public String addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilLike) {
+	public String  addContactos(@RequestParam("idPerfil") int idPerfil,@RequestParam("idPerfilLike") int idPerfilLike) {
+		System.out.println("***********ENTRA EN EL ADD CONTACTO");
 		service.addContacto(idPerfil,idPerfilLike);
-		return "perfil";
+		System.out.println("***********ENTRA y hace el ADD");
+		
+		return "redirect:/perfil/listaContactos?idPerfil="+idPerfil;
 	}
 	
-	@GetMapping("/p")
-	public String p() {
-		service.addContacto(6,2);
-		return "perfil";
-	}
+	
 	/**
 	 * Metodo listaContacto muestra los contactos
 	 * del usuario 
@@ -180,7 +183,8 @@ public class PerfilController {
 	@GetMapping("/listaContactos")
 	public String listaContactos(ModelMap model,@RequestParam("idPerfil") int idPerfil) {
 		logger.info("Muestrame perfiles like ");
-		
+		Perfil p =(Perfil)model.getAttribute("current_perfil"); 
+		idPerfil=p.getIdPerfil();
 		List<Perfil> contacto=new ArrayList<Perfil>();
 		System.out.println("Estoy en listaContactos *************************");
 		//listas=service.mostrarSeleccion(p.getIdPerfil());
@@ -202,7 +206,7 @@ public class PerfilController {
 	@PostMapping("/addDescartes")
 	public String addDescartes(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilDisLike) {
 		service.addDescartes(idPerfil,idPerfilDisLike);
-		return "perfil";
+		return "redirect:/perfil/listaDescartes?idPerfil="+idPerfil;
 	}		
 	/**
 	 * Metodo listaDescartes muestra la lista de los 
@@ -213,17 +217,17 @@ public class PerfilController {
 	 * @return la pagina donde se envia
 	 */
 	@GetMapping("/listaDescartes")
-	public String listaDescartes(ModelMap model,Perfil p) {
+	public String listaDescartes(ModelMap model,@RequestParam("idPerfil") int idPerfil ) {
 		logger.info("Muestrame perfiles Dislike ");
 		List<Perfil> descartes=new ArrayList<Perfil>();
 		System.out.println("Estoy en listaDescartes *************************");
-		descartes=service.listaDescartes(p.getIdPerfil());
+		descartes=service.listaDescartes(idPerfil);
 		model.addAttribute("descartes", descartes);
 		for(int i=0;i<descartes.size();i++) {
 			System.out.println(descartes.get(i));
 			System.out.println(" *******************BUCLE");
 		}
-		return "index"; 
+		return "descartes"; 
 	}
 	/**
 	 * Metodo listaMatch muestra la lista de match
@@ -234,13 +238,17 @@ public class PerfilController {
 	 * @return la pagina donde te envia
 	 */
 	@GetMapping("/listaMatch")
-	public String listaMatch(ModelMap model,Perfil p) {
+	public String listaMatch(ModelMap model,@RequestParam("idPerfil") int idPerfil) {
 		logger.info("Muestrame perfiles Match ");
 		List<Perfil> Match=new ArrayList<Perfil>();
 		System.out.println("Estoy en listaMatch *************************");
-		Match=service.listaMatch(p.getIdPerfil());
+		try {
+			Match=service.listaMatch(idPerfil);
+		} catch (Exception e) {
+			return "NoMatch";
+		}
 		model.addAttribute("match", Match);
-		return "index";
+		return "match";
 	}
 
 }

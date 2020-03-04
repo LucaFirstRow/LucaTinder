@@ -34,17 +34,17 @@
                     </div>
                     <div class="iconoMenu">
                         <li>
-                            <a href="#"  class="enlacePrimario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a>
+                            <a th:href="@{/perfil/listaDescartes(idPerfil=${current_perfil.idPerfil})}"  class="enlacePrimario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a>
                         </li>
                     </div>
                     <div class="iconoMenu">
                             <li>
-                                <a href="#"  class="enlacePrimario"><span class="fas fa-heart"></span><br/>Macht</a>
+                                <a th:href="@{/perfil/listaMatch(idPerfil=${current_perfil.idPerfil})}"  class="enlacePrimario"><span class="fas fa-heart"></span><br/>Macht</a>
                             </li>
                         </div>
                     <div class="iconoMenu">
                         <li>
-                            <a href="#" class="enlacePrimario"><span class="fas fa-user-edit"></span><br/> Mis Datos</a>
+                            <a  th:href="@{/perfil/edit(idPerfil=${current_perfil.idPerfil})}"  class="enlacePrimario"><span class="fas fa-user-edit"></span><br/> Mis Datos</a>
                         </li>
                     </div>
                     </ul>
@@ -73,8 +73,34 @@
                                 </div>  
                             </div>
                             <div class="col-12 botonera">
-                                <div class="col-6 botonetaDisLike"><a href="" class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a></div>
-                                <div class="col-6 botonetaLike"><a th:href="@{/perfil/addContacto(idPerfil=${current_perfil.idPerfil})(idPerfilLike=${perfil.idPerfil})}" class="enlacePrimario"><span class="far fa-thumbs-up"></span><br/> Contactos</a></div>
+                                <div class="col-6 botonetaDisLike">
+<!--                                 <a href="" class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a> -->
+                                 <form class="col-12" th:action="@{/perfil/addDescartes}" method="post">
+	                                <!--  <a th:href="@{/perfil/addContacto?idPerfil={idPerfil}?idPerfilLike={idPerfilLike} (idPerfil=${current_perfil.idPerfil} ,idPerfilLike=${perfil.idPerfil})}" class="enlacePrimario">
+	                                <span class="far fa-thumbs-up"></span><br/> 
+	                                Contactos
+	                                </a>-->
+	                                <input type="hidden" th:value="${current_perfil.idPerfil}" name="idPerfil" id="idPerfil" />
+	                                <input type="hidden" th:value="${perfil.idPerfil}" name="idPerfilDisLike" id="idPerfilDisLike" />
+	                                <input class="col-12 btn-botonera" type="submit" value="Dislike" />
+	                                <span class="fas fa-thumbs-down"></span>
+	                                </form>
+                                </div>
+                               
+	                                <div class="col-6 botonetaLike">
+	                                <form class="col-12" th:action="@{/perfil/addContacto}" method="post">
+	                                <!--  <a th:href="@{/perfil/addContacto?idPerfil={idPerfil}?idPerfilLike={idPerfilLike} (idPerfil=${current_perfil.idPerfil} ,idPerfilLike=${perfil.idPerfil})}" class="enlacePrimario">
+	                                <span class="far fa-thumbs-up"></span><br/> 
+	                                Contactos
+	                                </a>-->
+	                                <input type="hidden" th:value="${current_perfil.idPerfil}" name="idPerfil" id="idPerfil" />
+	                                <input type="hidden" th:value="${perfil.idPerfil}" name="idPerfilLike" id="idPerfilLike" />
+	                                <input class="col-12 btn-botonera" type="submit" value="Like" />
+	                                <span class="fas fa-thumbs-up"></span>
+	                                </form>
+	                                </div>
+	                                
+                           		
                             </div>
                         </div>
                     </div>

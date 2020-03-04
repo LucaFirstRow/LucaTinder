@@ -40,6 +40,14 @@ p{
     background-color: #eb4e65 !important;
     color: aliceblue !important;
 }
+.btn-botonera{
+	background-color: transparent;
+	color:white;
+	font-size: small;
+	height: 100%;
+	width: 100%;
+	border: none;
+}
 .nuevoRegistro a{
     color: white;
     font-family: 'Poppins';
