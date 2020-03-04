@@ -37,10 +37,13 @@ public class TestRepository {
 		perfil.save(pepe);
 		
 		List<Perfil> perfiles=perfil.findAll();
-		assertEquals("pepe",perfiles.get(17).getNombre());
-		assertEquals(22,perfiles.get(17).getEdad());
-		assertEquals(2,perfiles.get(17).getGenero());
-		assertEquals("Madrid",perfiles.get(17).getPoblacion());
+		for(int i=0;i<perfiles.size();i++) {
+			System.out.println();
+		}
+		assertEquals("pepe",perfiles.get(15).getNombre());
+		assertEquals(22,perfiles.get(15).getEdad());
+		assertEquals(2,perfiles.get(15).getGenero());
+		assertEquals("Madrid",perfiles.get(15).getPoblacion());
 		
 	}
 	
@@ -50,7 +53,7 @@ public class TestRepository {
 		Optional<Perfil> German=perfil.findById(3);
 		List<Perfil> perfiles=perfil.mostrarSeleccion(German.get());
 		
-		assertEquals(6,perfiles.size());
+		assertEquals(7,perfiles.size());
 	}
 	
 	@Test
