@@ -64,13 +64,13 @@ public class PerfilServicesImp implements PerfilServices {
 	 */
 		public void editarPerfil(Perfil p) {
 		System.out.println("ENTRA EN EL EDITAR DEL DAO ****************************");
-		System.out.println(p.getIdPerfil());
-		System.out.println(p.getNombre());
-		System.out.println(p.getFoto());
+		//System.out.println(p.getIdPerfil());
+		//System.out.println(p.getNombre());
+		//System.out.println(p.getFoto());
 		Perfil nuevo = p;
 		nuevo.setNombre(p.getNombre());
 		nuevo.setEdad(p.getEdad());
-		nuevo.setIntereses(p.getIntereses());
+		//nuevo.setIntereses(p.getIntereses());
 		nuevo.setDescripcionCorta(p.getDescripcionCorta());
 		nuevo.setDescripcion(p.getDescripcion());
 		nuevo.setFoto(p.getFoto());
