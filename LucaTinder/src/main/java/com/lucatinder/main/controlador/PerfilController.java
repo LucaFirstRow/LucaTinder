@@ -9,20 +9,25 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import com.lucatinder.main.modelo.Contactos;
+import com.lucatinder.main.modelo.Materia;
 import com.lucatinder.main.modelo.Perfil;
 import com.lucatinder.main.modelo.User;
+import com.lucatinder.main.service.MateriaServices;
 import com.lucatinder.main.service.PerfilServices;
+
 /**
  * 
  * @author Equipo 1
@@ -31,6 +36,7 @@ import com.lucatinder.main.service.PerfilServices;
  * y la vista.
  *
  */
+@CrossOrigin(origins = "http://localhost:4200")
 @Controller
 @RequestMapping("/perfil")
 @SessionAttributes("current_perfil")
@@ -43,6 +49,12 @@ public class PerfilController {
 	@Autowired
 	private PerfilServices service;
 	/**
+	 * {@value #service} MateriaServices se declara esta variable para
+	 *  ofrecer los servicios de materia
+	 */
+	@Autowired
+	private MateriaServices serviceMateria;
+	/**
 	 * {@value # logger}Logger  se encarga de mostrar informaciones en la consola.
 	 * Su funcionalidad es indicar si los metodos se ha ejecutado correctamente.
 	 * 
@@ -54,7 +66,6 @@ public class PerfilController {
 	 * @param perfil
 	 * @return pagina /perfil/add
 	 */
-
 	@GetMapping("/addPerfilForm")
 	 public String addPerfilForm(@ModelAttribute("perfil")Perfil perfil) {
 	    System.out.println("ENTRA ************************************************");
@@ -152,8 +163,10 @@ public class PerfilController {
 	@GetMapping("/edit")
 	public String editarPerfil(ModelMap model,@RequestParam("idPerfil") int id) {
 		logger.info("Estoy en la etapa de EDIT");
-		model.addAttribute("Perfil", service.findOne(id));
-		return "addPerfil";
+		model.addAttribute("perfil", service.findOne(id).get());
+		model.addAttribute("listMaterias",serviceMateria.getMateria(id));
+		model.addAttribute("listMateriasNoSelect",serviceMateria.getMateriaNoSelect(id));
+		return "edit";
 	}
 	/**
 	 * Metodo addContacto añade un nuevo contacto 
@@ -249,6 +262,22 @@ public class PerfilController {
 		}
 		model.addAttribute("match", Match);
 		return "match";
+	}
+	@GetMapping("/detalles")
+	public String detalles(ModelMap model,@RequestParam("id_perfil") int idPerfil) {
+		logger.info("Entra en el detalles perfil ");
+		 
+		try {
+			Optional <Perfil> datosPerfil =service.findOne(idPerfil);
+			//Get Listado de materias de un usuario;
+			List<Materia> listMaterias= (List<Materia>)serviceMateria.getMateria(idPerfil);
+			System.out.println("ESTAS SON LAS MATERIAS:" + datosPerfil.get().getIntereses());
+			model.addAttribute("datosPerfil",datosPerfil.get());
+			model.addAttribute("listaMaterias",listMaterias);
+		} catch (Exception e) {
+			return "error";
+		}
+		return "detalles";
 	}
 
 }

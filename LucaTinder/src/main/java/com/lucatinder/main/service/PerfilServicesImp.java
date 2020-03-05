@@ -72,13 +72,18 @@ public class PerfilServicesImp implements PerfilServices {
 	 * @Param contacto Indica un nuevo contacto
 	 */
 	public void addContacto(int idPerfil,int idPerfilLike){
+		System.out.println("HOLA ESTOY EN EL ADD CONTACTO");
 		Optional<Perfil> perfil=findOne(idPerfil);
 		Optional<Perfil> perfil2=findOne(idPerfilLike);
 		Contactos contacto=new Contactos();
+		System.out.println("He creado uno ");
 		contacto.setPerfil(perfil.get());
 		contacto.setPerfil2(perfil2.get());
 		Usuario.addContacto(contacto);
+		System.out.println("Anado este contacto");
 		addMatch(idPerfil, idPerfilLike);
+		System.out.println("NOSE PERO ME VOY");
+		
 	}
 	/**
 	 * listaContacto muestra una lista de contactos 

@@ -27,4 +27,9 @@ public class DaoMateriaImpl implements DaoMateriaCustom {
 		query.setParameter(1, id);
 		return (List<Materia>) query.getResultList();
 	}
+	public List<Materia> listaMateriaNoSelect(int id){
+		Query query=entityManager.createNativeQuery("select materia.* from materia  where materia.id_materia NOT IN (select intereses.id_materia from intereses where intereses.id_perfil=?)",Materia.class);
+		query.setParameter(1, id);
+		return (List<Materia>) query.getResultList();
+	}
 }

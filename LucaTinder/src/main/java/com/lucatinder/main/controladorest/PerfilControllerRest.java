@@ -3,6 +3,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +31,7 @@ import com.lucatinder.main.service.PerfilServices;
  * se encarga de controlar el flujo de datos de perfil
  * y la vista.
  */
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/perfilrest")
 public class PerfilControllerRest {
@@ -57,6 +61,7 @@ public class PerfilControllerRest {
 	 * 
 	 */
 	@GetMapping("/list")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public Collection<Perfil> login(@RequestParam("id") int id) {
 		List<Perfil> seleccion=service.mostrarSeleccion(id);
 		return seleccion;
@@ -91,6 +96,71 @@ public class PerfilControllerRest {
 		//service.addContacto(nuevoLigue);
 		return ResponseEntity.ok().header("Header", "Contacto añadido con exito")
 		        .body("la operacion se realizo correctamente");
-	}	
+	}
+	
+	/**
+	 * 
+	 * @author Equipo 1
+	 * devuelve un json con la lista de contactos
+	 * 
+	 */
+	@GetMapping("/listaContactos")
+	public List<Perfil> listaContactos(@RequestParam("idPerfil") int idPerfil) {
+		logger.info("Muestrame perfiles like ");
+		
+		List<Perfil> contacto=new ArrayList<Perfil>();
+		System.out.println("Estoy en listaContactos *************************");
+		contacto=service.listaContacto(idPerfil);
+		
+		return contacto; 
+	}
+	
+	/**
+	 * 
+	 * @author Equipo 1
+	 * la lista añadir descartes por medio de rest
+	 * 
+	 */
+	@PostMapping("/addDescartes")
+	public ResponseEntity<String> addDescartes(@RequestParam("idPerfil") int idPerfil,@RequestParam int idPerfilDisLike) {
+		service.addDescartes(idPerfil,idPerfilDisLike);
+		return ResponseEntity.ok().header("Header", "realizado con existo")
+		        .body("la operacion se realizo correctamente");
+	}
+	
+	/**
+	 * 
+	 * @author Equipo 1
+	 * la lista añadir descartes por medio de rest
+	 * 
+	 */
+	@GetMapping("/listaDescartes")
+	public List<Perfil> listaDescartes(@RequestParam("idPerfil") int idPerfil) {
+		logger.info("Muestrame perfiles Dislike ");
+		List<Perfil> descartes=new ArrayList<Perfil>();
+		System.out.println("Estoy en listaDescartes *************************");
+		descartes=service.listaDescartes(idPerfil);
+		
+		for(int i=0;i<descartes.size();i++) {
+			System.out.println(descartes.get(i));
+			System.out.println(" *******************BUCLE");
+		}
+		return descartes; 
+	}
+	
+	/**
+	 * 
+	 * @author Equipo 1
+	 * Muestra la lista match en rest
+	 * 
+	 */
+	@GetMapping("/listaMatch")
+	public List<Perfil> listaMatch(@RequestParam("idPerfil") int idPerfil) {
+		logger.info("Muestrame perfiles Match ");
+		List<Perfil> Match=new ArrayList<Perfil>();
+		System.out.println("Estoy en listaMatch *************************");
+		Match=service.listaMatch(idPerfil);
+		return Match;
+	}
 
 }

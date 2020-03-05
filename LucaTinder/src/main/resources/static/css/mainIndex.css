@@ -17,6 +17,14 @@ p{
     font-size: large;
     color: white;
 }
+.btn-custom{
+    background-color: #6cb8a1 !important;
+    color: aliceblue !important;
+}
+.btn-custom2{
+    background-color: #eb4e65 !important;
+    color: aliceblue !important;
+}
 .inputCustom{
     font-family: 'Poppins';
     font-size: 15px;
@@ -222,6 +230,14 @@ form{
     padding: 0;
     margin: 0;
 }
+#preview img{
+    max-width: 100%;
+    border-radius: 10px;
+}
+.hidden{
+    display: none;
+}
+
 @media (max-width:992px){
     .blockCardPerfil{
         display: block;

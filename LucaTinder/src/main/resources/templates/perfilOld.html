@@ -1,0 +1,48 @@
+<div class="row mt-4">
+    <div th:each="perfil : ${seleccion}" class=" col-sm-12 col-lg-6 mb-2">
+        <div class="cardPerfil col-12">
+            <div class="col-3 p-0"><img th:src="${perfil.foto}" class="imgCard" alt="..."></div>
+            <div class="col-9 p-0">
+                <div class="p-2">
+                    <div class="col-12 d-flex">
+                    <div class="col-6"><h5 class="card-title" th:text="${perfil.nombre}"></h5></div>
+                    <div class="col-6" th:text="${perfil.edad}"> </div>
+                    </div>
+                    <div class="col-12">
+                        <p class="card-text" th:text="${perfil.descripcionCorta}"></p>
+                    </div>  
+                </div>
+                <div class="col-12 botonera">
+                    <div class="col-6 botonetaDisLike">
+<!--                                 <a href="" class="enlaceSecundario"><span class="fas fa-thumbs-down"></span><br/>Descartes</a> -->
+                     <form class="col-12" th:action="@{/perfil/addDescartes}" method="post">
+                        <!--  <a th:href="@{/perfil/addContacto?idPerfil={idPerfil}?idPerfilLike={idPerfilLike} (idPerfil=${current_perfil.idPerfil} ,idPerfilLike=${perfil.idPerfil})}" class="enlacePrimario">
+                        <span class="far fa-thumbs-up"></span><br/> 
+                        Contactos
+                        </a>-->
+                        <input type="hidden" th:value="${current_perfil.idPerfil}" name="idPerfil" id="idPerfil" />
+                        <input type="hidden" th:value="${perfil.idPerfil}" name="idPerfilDisLike" id="idPerfilDisLike" />
+                        <input class="col-12 btn-botonera" type="submit" value="Dislike" />
+                        <span class="fas fa-thumbs-down"></span>
+                        </form>
+                    </div>
+                   
+                        <div class="col-6 botonetaLike">
+                        <form class="col-12" th:action="@{/perfil/addContacto}" method="post">
+                        <!--  <a th:href="@{/perfil/addContacto?idPerfil={idPerfil}?idPerfilLike={idPerfilLike} (idPerfil=${current_perfil.idPerfil} ,idPerfilLike=${perfil.idPerfil})}" class="enlacePrimario">
+                        <span class="far fa-thumbs-up"></span><br/> 
+                        Contactos
+                        </a>-->
+                        <input type="hidden" th:value="${current_perfil.idPerfil}" name="idPerfil" id="idPerfil" />
+                        <input type="hidden" th:value="${perfil.idPerfil}" name="idPerfilLike" id="idPerfilLike" />
+                        <input class="col-12 btn-botonera" type="submit" value="Like" />
+                        <span class="fas fa-thumbs-up"></span>
+                        </form>
+                        </div>
+                        
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

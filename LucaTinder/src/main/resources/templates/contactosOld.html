@@ -18,7 +18,7 @@
     
     
     <div class="wrapper d-flex">
-                       <nav class="sideNav">
+                      <nav class="sideNav">
                     <ul class="list-unstyled components menuHorizontal mb-5">
                     <div class="iconoMenu">
                         <li class="active">
@@ -59,37 +59,36 @@
                 </header>
             </div> 
             <div class="col-12">
-                <h1 class="title text-center">Mis Descartes</h1>
+                <h1 class="title text-center">Mis Contactos</h1>
             </div>
+
+    
+
+
+
+
             <div class="row mt-4">
-                <div class="col-12" th:each="perfil : ${descartes}">
-                    <div class="col-md-6">
-                        <div class="card card-profile">
-                            <div class="d-flex">
-                                <div class="card-image col-4">
-                                    <a  href="#"> <img class="img" th:src="${perfil.foto}">
-                                    </a>
+                <div th:each="perfil : ${contactos}" class=" col-sm-12 col-lg-6 mb-2">
+                    <div class="cardPerfil col-12">
+                        <div class="col-3 p-0"><img th:src="${perfil.foto}" class="imgCard" alt="..."></div>
+                        <div class="col-9 p-0">
+                            <div class="p-2">
+                                <div class="col-12 d-flex">
+                                <div class="col-6"><h5 class="card-title" th:text="${perfil.nombre}"></h5></div>
+                                <div class="col-6" th:text="${perfil.edad}"> </div>
                                 </div>
-                                <div class="col-6 mt-3">
-                                    <h4 class="titleSmallCard" th:text="${perfil.nombre}"></h4>
-                                    <h4 class="titleSmallCard" th:text="${perfil.edad}"></h4>  
-                                    <h4 class="titleSmallCard" th:text="${perfil.poblacion}"></h4>  
-                                </div>
+                                <div class="col-12">
+                                    <p class="card-text" th:text="${perfil.descripcionCorta}"></p>
+                                </div>  
                             </div>
-                            
-                            <div class="table">
-                                <p class="card-description text-left text-m"  th:text="${perfil.descripcionCorta}">  </p>
+                            <div class="col-12 botonera">
+                            	<div class="col-6 botonetaDisLike"><a href="" class="enlaceSecundario"><span class="fas fa-trash"></span><br/>Remove</a></div>
+                                <div class="col-6 botonetaLike"><a th:href="@{/perfil/detalles(id_perfil=${perfil.idPerfil})}" class="enlacePrimario"><span class="far fa-eye"></span><br/> Ver Detalles</a></div>
                             </div>
-                            <div>
-                                <div class="col-12 botonera">
-                                    <div class="col-6 botonetaDisLike"><a href="" class="enlaceSecundario"><span class="fas fa-trash"></span><br/>Remove</a></div>
-                                    <div class="col-6 botonetaLike"><a th:href="@{/perfil/detalles(id_perfil=${perfil.idPerfil})}" class="enlacePrimario"><span class="far fa-eye"></span><br/> Ver Detalles</a></div>
-                                </div>
-                            </div>
+          
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
             <!--  
@@ -127,7 +126,7 @@
             </div>
         </div>-->
     </div>
-                
+    <script src="/resources/js/main.js" ></script>        
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   

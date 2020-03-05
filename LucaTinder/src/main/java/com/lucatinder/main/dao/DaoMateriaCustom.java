@@ -12,5 +12,6 @@ import com.lucatinder.main.modelo.Materia;
 public interface DaoMateriaCustom {
 	
 	public List<Materia> listaMateria(int id );
+	public List<Materia> listaMateriaNoSelect(int id);
 }
 

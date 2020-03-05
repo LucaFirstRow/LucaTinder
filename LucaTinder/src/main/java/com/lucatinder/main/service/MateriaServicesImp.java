@@ -24,13 +24,28 @@ public class MateriaServicesImp implements MateriaServices {
 	 * Metodo allMateria() muestra una lista de las materias en el sistema
 	 * 
 	 * 
-	 * @param  sin parametros
+	 * @param  Id del perfil
 	 * @return List<Materia> Devuelve una Lista <Materia> con todas la materias del sistema 
 	 */
 	@Override
 	public List<Materia> getMateria(int id) {
 		return dMaterias.listaMateria(id);
 	}
+	
+	/**
+	 * Metodo allMateriaNoSelect() muestra una lista de las materias que no han sido seleccionadas por el usuario
+	 * 
+	 * 
+	 * @param  Id del perfil al que quieres ver las materias no seleccionadas
+	 * @return List<Materia> Devuelve una Lista <Materia> con todas la materias que no han sido seleccioandass 
+	 */
+	@Override
+	public List<Materia> getMateriaNoSelect(int id) {
+		return dMaterias.listaMateriaNoSelect(id);
+	}
+	
+	
+	
 
 	
 }
