@@ -1,9 +1,10 @@
 package com.lucatinder.main.service;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import com.lucatinder.main.modelo.Materia;
+import com.lucatinder.main.modelo.Perfil;
 
 /**
  * 
@@ -15,4 +16,5 @@ import com.lucatinder.main.modelo.Materia;
 public interface MateriaServices {
 	public List<Materia> getMateria(int id);
 	public List<Materia> getMateriaNoSelect(int id);
+	public Optional<Materia> findOne(int id);
 }

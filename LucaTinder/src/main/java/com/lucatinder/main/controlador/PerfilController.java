@@ -15,13 +15,16 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import com.lucatinder.main.modelo.Contactos;
+import com.lucatinder.main.modelo.Intereses;
 import com.lucatinder.main.modelo.Materia;
 import com.lucatinder.main.modelo.Perfil;
 import com.lucatinder.main.modelo.User;
@@ -274,6 +277,31 @@ public class PerfilController {
 			System.out.println("ESTAS SON LAS MATERIAS:" + datosPerfil.get().getIntereses());
 			model.addAttribute("datosPerfil",datosPerfil.get());
 			model.addAttribute("listaMaterias",listMaterias);
+		} catch (Exception e) {
+			return "error";
+		}
+		return "detalles";
+	}
+	@PostMapping("/savePerfilEdit")
+	public String savePerfilEdit(@ModelAttribute("perfil") Perfil p,ModelMap modelo ,@RequestParam("intereses_s") int intereses_s[]) {
+		logger.info("Entra en el Salvar detalles del perfil ");
+		Perfil datosPerfil = p;
+		Intereses interesesAdd = new Intereses();
+		Set <Intereses> nuevosIntereses = new HashSet<Intereses>();
+		
+		for (int i=0 ;i < intereses_s.length; i++) {
+			interesesAdd.setPerfil(p);
+			System.out.println(serviceMateria.findOne(intereses_s[i]).get().getDescripcionMateria());
+			interesesAdd.setMateria(serviceMateria.findOne(intereses_s[i]).get());
+			nuevosIntereses.add(interesesAdd);	
+		}
+		p.setIntereses(nuevosIntereses);
+		service.editarPerfil(p);
+		
+		System.out.println("ESTOS SON LOSI INTERESSSS :"+p.getIntereses());
+		try {
+			
+			//Get Listado de materias de un usuario;
 		} catch (Exception e) {
 			return "error";
 		}

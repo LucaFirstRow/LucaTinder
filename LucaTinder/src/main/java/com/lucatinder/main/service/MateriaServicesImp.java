@@ -1,6 +1,7 @@
 package com.lucatinder.main.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -43,6 +44,14 @@ public class MateriaServicesImp implements MateriaServices {
 	public List<Materia> getMateriaNoSelect(int id) {
 		return dMaterias.listaMateriaNoSelect(id);
 	}
+
+	@Override
+	public Optional<Materia> findOne(int id) {
+		return dMaterias.findById(id);
+	}
+
+	
+	
 	
 	
 	

@@ -61,14 +61,20 @@
             <div class="col-12">
                 <h1 class="title text-center">Editar mi Perfil</h1>
             </div>
-            <form>
-            <div class="container" id="bloqueContentPerfil" th:object="${perfil}">
+            <form  method="post"
+            	th:object="${perfil}"
+				th:action="@{/perfil/savePerfilEdit}">
+            <div class="container card" id="bloqueContentPerfil">
                 <div class="row">
+                <input id="idPerfil" type="hidden" name="idPerfil"  th:field="*{idPerfil}" />
+                <input id="genero" type="hidden" name="genero"  th:field="*{genero}" />
+                <input id="foto" type="hidden" name="foto"  th:field="*{foto}" />
+                
                     <div class="col-4"> 
-                        <input id="foto" type="file" name="foto" accept="image/*" class="hidden"  />
-                        <label for="foto" id="file-drag">
-                            <div  id="preview">
-                                <img id="fotoUser" class="img" th:src="${perfil.foto}">
+                        <input id="fotoUpLoad" type="file" name="fotoUpLoad" accept="image/*" class="hidden"  />
+                        <label for="fotoUser" id="file-drag">
+                            <div  id="preview" class="card-image">
+                                <img id="fotoUser" name="fotoUser" class="img" th:src="*{foto}" />
                             </div>
                           <div id="start">
                             <i class="fa fa-download" aria-hidden="true"></i>
@@ -79,25 +85,25 @@
                           </div>
                         </label>
                     </div>
-                    <div class="col-8">
+                    <div class="col-8 pt-4">
                         <div class="col-12 d-flex">
-                            <input class="col-6 mr-2" type="text" name="nombre" id="nombre" placeholder="nombre"  th:value="${perfil.nombre}"/>
-                            <input class="col-4 mr-2" type="text" name="poblacion" id="poblacion" placeholder="Poblacion"  th:value="${perfil.poblacion}"/>
-                            <input class="col-2" type="text" name="edad" id="edad" placeholder="Edad"  th:value="${perfil.edad}"/>
+                            <input class="col-6 mr-2" type="text" name="nombre" id="nombre" placeholder="nombre"  th:field="*{nombre}"  th:value="*{nombre}"/>
+                            <input class="col-4 mr-2" type="text" name="poblacion" id="poblacion" placeholder="Poblacion" th:field="*{poblacion}"   th:value="*{poblacion}"/>
+                            <input class="col-2" type="text" name="edad" id="edad" placeholder="Edad" th:field="*{edad}" th:value="*{edad}"/>
                         </div>
                         <div class="col-12  mt-2 pr-0">
-                            <textarea class="col-12"  rows="5" name="descripcion" id="descripcion" placeholder="Descripcion Larga Max 500 carracteres"  th:text="${perfil.descripcion}"></textarea>
+                            <textarea class="col-12"  rows="5" name="descripcion" id="descripcion" placeholder="Descripcion Larga Max 500 carracteres" th:field="*{descripcionCorta}"  th:text="*{descripcion}"></textarea>
                         </div>
                         <div class="col-12  mt-2 pr-0">
-                        	<textarea class="col-12" rows="8" name="descripcion" id="descripcion" placeholder="Descripcion Corta Max 200 carracteres"  th:text="${perfil.descripcionCorta}"></textarea>
+                        	<textarea class="col-12" rows="8" name="descripcion" id="descripcion" placeholder="Descripcion Corta Max 200 carracteres" th:field="*{descripcion}"  th:text="*{descripcionCorta}"></textarea>
                         </div>
                         <div class="col-12 d-flex">
                             <div class="row p-0 m-0">
                             <div class="mr-2" th:each="materia : ${listMaterias}">
-                                <input type="checkbox" name="intereses" th:checked="true" th:value=${materia.idMateria} /><label class="pr-2" th:text=${materia.descripcionMateria}></label>    
+                                <input type="checkbox" name="intereses_s" th:checked="true" th:value="${materia.idMateria}"/><label class="pr-2" th:text=${materia.descripcionMateria}></label>
                             </div>
                             <div  class="mr-2" th:each="materia : ${listMateriasNoSelect}">
-                                    <input type="checkbox" name="intereses" th:checked="false" th:value=${materia.idMateria} /><label class="pr-2" th:text=${materia.descripcionMateria}></label>
+                                    <input type="checkbox" name="intereses_s" th:checked="false" th:value="${materia.idMateria}" /><label class="pr-2" th:text=${materia.descripcionMateria}></label>
                             </div>
                             </div>
                         </div>

@@ -62,9 +62,21 @@ public class PerfilServicesImp implements PerfilServices {
 	 * pasandole como parametro el objecto perfil
 	 * @param perfil 
 	 */
-	public void editarPerfil(Perfil perfil){
-		Usuario.save(perfil);
-	}
+		public void editarPerfil(Perfil p) {
+		System.out.println("ENTRA EN EL EDITAR DEL DAO ****************************");
+		System.out.println(p.getIdPerfil());
+		System.out.println(p.getNombre());
+		System.out.println(p.getFoto());
+		Perfil nuevo = p;
+		nuevo.setNombre(p.getNombre());
+		nuevo.setEdad(p.getEdad());
+		nuevo.setIntereses(p.getIntereses());
+		nuevo.setDescripcionCorta(p.getDescripcionCorta());
+		nuevo.setDescripcion(p.getDescripcion());
+		nuevo.setFoto(p.getFoto());
+		Usuario.saveAndFlush(nuevo);
+	
+		}
 	
 	/**
 	 * Metodo addContacto añade un nuevo contacto en la 
