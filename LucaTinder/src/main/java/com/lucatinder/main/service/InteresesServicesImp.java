@@ -27,16 +27,24 @@ public class InteresesServicesImp implements InteresesServices {
 	DaoMateria dMateria;
 	@Autowired
 	DaoPerfil dPerfil;
-
+    /**
+     * 
+     */
 	public void addInteres(int id_perfil, int IdMateria) {
 		Intereses newInt=new Intereses();
 		newInt.setPerfil(dPerfil.findById(id_perfil).get());
 		newInt.setMateria(dMateria.findById(IdMateria).get());
 		dIntereses.save(newInt);
 	}
+	/**
+	 * 
+	 */
 	public void deleteIntereses(int id) {
 		dIntereses.deleteIntereses(id);
 	}
+	/**
+	 * 
+	 */
 	public void  addNuevosIntereses(int idPerfil, int id_Materia[]) {
 		deleteIntereses(idPerfil);
 		for(int i=0;i< id_Materia.length;i++) {
