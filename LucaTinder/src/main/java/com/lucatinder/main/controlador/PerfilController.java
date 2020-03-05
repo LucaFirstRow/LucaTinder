@@ -1,4 +1,5 @@
 package com.lucatinder.main.controlador;
+import org.apache.tomcat.util.http.fileupload.UploadContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -286,6 +287,7 @@ public class PerfilController {
 	public String savePerfilEdit(@ModelAttribute("perfil") Perfil p,ModelMap modelo ,@RequestParam("intereses_s") int intereses_s[]) {
 		logger.info("Entra en el Salvar detalles del perfil ");
 		Perfil datosPerfil = p;
+		/*
 		Intereses interesesAdd = new Intereses();
 		Set <Intereses> nuevosIntereses = new HashSet<Intereses>();
 		
@@ -294,8 +296,8 @@ public class PerfilController {
 			System.out.println(serviceMateria.findOne(intereses_s[i]).get().getDescripcionMateria());
 			interesesAdd.setMateria(serviceMateria.findOne(intereses_s[i]).get());
 			nuevosIntereses.add(interesesAdd);	
-		}
-		p.setIntereses(nuevosIntereses);
+		}*/
+		
 		service.editarPerfil(p);
 		
 		System.out.println("ESTOS SON LOSI INTERESSSS :"+p.getIntereses());
