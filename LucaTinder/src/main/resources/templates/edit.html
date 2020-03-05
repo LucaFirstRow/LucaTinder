@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html   xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="mainIndex.css">
-    <link href="../css/font-awesome/css/all.css" rel="stylesheet"> <!--load all styles -->
-    <link href="../css/font-awesome/css/brands.css" rel="stylesheet">
-    <link href="../css/font-awesome/css/solid.css" rel="stylesheet">    
+    <link rel="stylesheet" href="/resources/css/mainIndex.css">
+    <link rel="stylesheet" href="/resources/css/card.css">
+    <link href="/resources/css/font-awesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+    <link href="/resources/css/font-awesome/css/brands.css" rel="stylesheet">
+    <link href="/resources/css/font-awesome/css/solid.css" rel="stylesheet">    
     <link href="https://fonts.googleapis.com/css?family=Kanit|Pacifico|Poppins:400,700i&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>LucaTinder</title>
 </head>
 <body>
     <div class="fondo"></div>
-    
-    
     <div class="wrapper d-flex">
         
         <nav class="sideNav">
@@ -56,82 +55,62 @@
         <div class="container" id="bloqueContentPerfil">
             <div class="col-8 mt-4">
                 <header class="header p-0">
-                    <img class="logo" src="images/logo.png">
+                    <img class="logo" src="/resources/images/logo.png">
                 </header>
             </div> 
             <div class="col-12">
                 <h1 class="title text-center">Editar mi Perfil</h1>
             </div>
-            <div class="container">
-                <form>
-                    <div class="row mt-4">
-                    <div class="col-6 d-flex pl-0">
-                        <input class="col-6 mr-2" type="text" name="nombre" id="nombre" placeholder="nombre"/>
-                        <input class="col-4 mr-2" type="text" name="poblacion" id="poblacion" placeholder="Poblacion"/>
-                        <input class="col-2" type="text" name="edad" id="edad" placeholder="Edad"/>
-                    </div>
-                    <div class="col-6"> 
-                        <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
-                        <label for="file-upload" id="file-drag">
-                          <img id="file-image" src="#" alt="Preview" class="hidden">
+            <form>
+            <div class="container" id="bloqueContentPerfil" th:object="${perfil}">
+                <div class="row">
+                    <div class="col-4"> 
+                        <input id="foto" type="file" name="foto" accept="image/*" class="hidden"  />
+                        <label for="foto" id="file-drag">
+                            <div  id="preview">
+                                <img id="fotoUser" class="img" th:src="${perfil.foto}">
+                            </div>
                           <div id="start">
                             <i class="fa fa-download" aria-hidden="true"></i>
-                            <div>Select a file or drag here</div>
                             <div id="notimage" class="hidden">Please select an image</div>
                             <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
                           </div>
                           <div id="response" class="hidden">
-                            <div id="messages"></div>
-                            <progress class="progress" id="file-progress" value="0">
-                              <span>0</span>%
-                            </progress>
                           </div>
                         </label>
-                    
                     </div>
-                    <div class="col-6 p-0 mt-2">
-                            <textarea  class="col-12" name="descripcion" id="descripcion" placeholder="Descripcion Larga Max 500 carracteres"></textarea>
-                            <textarea class="col-12"  name="descripcion" id="descripcion" placeholder="Descripcion Corta Max 200 carracteres"></textarea>
+                    <div class="col-8">
+                        <div class="col-12 d-flex">
+                            <input class="col-6 mr-2" type="text" name="nombre" id="nombre" placeholder="nombre"  th:value="${perfil.nombre}"/>
+                            <input class="col-4 mr-2" type="text" name="poblacion" id="poblacion" placeholder="Poblacion"  th:value="${perfil.poblacion}"/>
+                            <input class="col-2" type="text" name="edad" id="edad" placeholder="Edad"  th:value="${perfil.edad}"/>
+                        </div>
+                        <div class="col-12  mt-2 pr-0">
+                            <textarea class="col-12"  rows="5" name="descripcion" id="descripcion" placeholder="Descripcion Larga Max 500 carracteres"  th:text="${perfil.descripcion}"></textarea>
+                        </div>
+                        <div class="col-12  mt-2 pr-0">
+                        	<textarea class="col-12" rows="8" name="descripcion" id="descripcion" placeholder="Descripcion Corta Max 200 carracteres"  th:text="${perfil.descripcionCorta}"></textarea>
+                        </div>
+                        <div class="col-12 d-flex">
+                            <div class="row p-0 m-0">
+                            <div class="mr-2" th:each="materia : ${listMaterias}">
+                                <input type="checkbox" name="intereses" th:checked="true" th:value=${materia.idMateria} /><label class="pr-2" th:text=${materia.descripcionMateria}></label>    
+                            </div>
+                            <div  class="mr-2" th:each="materia : ${listMateriasNoSelect}">
+                                    <input type="checkbox" name="intereses" th:checked="false" th:value=${materia.idMateria} /><label class="pr-2" th:text=${materia.descripcionMateria}></label>
+                            </div>
+                            </div>
+                        </div>
                     </div>
-                   
-                        
+                    <div class="col-12 d-flex justify-content-end">
+                        <input class="btn btn-custom2 col-3" type="submit" name="Editar"/>
                     </div>
-                </form>
+                </div>
             </div>
-            <!--
-            <div class="row mt-4">
-                <form  method="post" th:action="@{/perfil/edit}" th:object="${perfil}" id="editPerfil" name="editPerfil" >
-                    <div class="col-6">
-
-                        <input type="text" name="nombre" id="nombre" placeholder="User Name"/>
-                        <input type="text" name="edad" id="edad" placeholder="Edad"/>
-                        <textarea name="descripcion" id="descripcion" placeholder="Descripcion Corta Max 200 carracteres"></textarea>
-                        <textarea name="descripcion" id="descripcion" rows="10" placeholder="Descripcion Larga Max 500 carracteres"></textarea>
-                        <input type="text" name="poblacion" id="poblacion" placeholder="Poblacion"/>
-                        <input type="file" name="foto" id="foto"/>
-
-                    </div>
-                    <div class="col-6">
-                    <select>
-					    <option th:each="materia : ${allMaterias}" th:value="${materia.idMateria}" th:text="${materia.descripcion}">
-					    </option>
-					</select>
-					
-                       <ul>
-                            <li th:each="singleMateria: ${allMaterias}">
-                                <input type="checkbox" 
-                                    th:field="${singleMateria:.descripcion}"
-                                    th:value="${singleMateria:.idMateria}" />
-                                <label th:text="${singleMateria:.descripcion}"></label>
-                            </li>
-                        </ul>  
-                        *Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia quos dignissimos ducimus voluptatum nulla ad corporis quae beatae et, voluptas eius iure fuga dolores id aperiam pariatur excepturi eos cumque! Perferendis dignissimos quod quia praesentium excepturi deserunt iste. Similique dolore tempore iure harum totam voluptate nostrum aliquam distinctio, consectetur officiis quis, asperiores voluptatem deleniti officia sequi dolorum soluta ut nam est nihil enim, praesentium ab? Neque quo vitae ipsa quasi quod eum debitis ipsum dolor? Ullam, at ratione quos minima deleniti expedita iusto doloribus maxime aliquam! Aperiam omnis sit labore ullam accusamus minus tenetur, cum libero est dolor expedita cumque.
-                    </div>
-                </form>
-            </div>-->
+        </form>
         </div>
     </div>
-                
+    <script type="text/javascript" src="/resources/js/main.js"></script>         
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   

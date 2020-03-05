@@ -14,4 +14,5 @@ import com.lucatinder.main.modelo.Materia;
  */
 public interface MateriaServices {
 	public List<Materia> getMateria(int id);
+	public List<Materia> getMateriaNoSelect(int id);
 }

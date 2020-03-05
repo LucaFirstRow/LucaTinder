@@ -163,8 +163,10 @@ public class PerfilController {
 	@GetMapping("/edit")
 	public String editarPerfil(ModelMap model,@RequestParam("idPerfil") int id) {
 		logger.info("Estoy en la etapa de EDIT");
-		model.addAttribute("Perfil", service.findOne(id));
-		return "addPerfil";
+		model.addAttribute("perfil", service.findOne(id).get());
+		model.addAttribute("listMaterias",serviceMateria.getMateria(id));
+		model.addAttribute("listMateriasNoSelect",serviceMateria.getMateriaNoSelect(id));
+		return "edit";
 	}
 	/**
 	 * Metodo addContacto añade un nuevo contacto 

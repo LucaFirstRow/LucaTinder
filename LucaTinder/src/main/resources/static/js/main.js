@@ -1,10 +1,9 @@
 document.getElementById("foto").onchange = function(e) {
 	let reader = new FileReader();
-  
   reader.onload = function(){
     let preview = document.getElementById('preview'),
-    		image = document.createElement('img');
-
+    		//image = document.createElement('img');
+            image=document.getElementById('fotoUser');
     image.src = reader.result;
     
     preview.innerHTML = '';
