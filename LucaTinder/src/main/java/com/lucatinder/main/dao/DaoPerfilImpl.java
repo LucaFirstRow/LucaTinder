@@ -131,7 +131,7 @@ public class DaoPerfilImpl implements DaoPerfilCustom {
 	 */
 	public int addMatch (Match match) {
 		Query query=entityManager.createNativeQuery("INSERT INTO maches"
-				+ "(id_match,id_perfil_match1,id_perfil_match2) VALUES (?,?,?)",Match.class);
+				+ "(id_match,id_perfil_match_1,id_perfil_match_2) VALUES (?,?,?)",Match.class);
 		query.setParameter(2, match.getPerfil().getIdPerfil());
 		query.setParameter(1,match.getIdMatch());
 		query.setParameter(3,match.getPerfil2().getIdPerfil());
