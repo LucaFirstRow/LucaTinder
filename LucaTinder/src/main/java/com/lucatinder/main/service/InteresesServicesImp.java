@@ -19,6 +19,7 @@ import com.lucatinder.main.modelo.Intereses;
  *Implementacion de los metodos de InteresesService
  */
 @Service
+@Transactional
 public class InteresesServicesImp implements InteresesServices {
 	
 	@Autowired

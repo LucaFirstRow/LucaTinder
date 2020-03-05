@@ -22,8 +22,10 @@ public class DaoInteresesImpl implements DaoInteresesCustom {
 	EntityManager entityManager;
 	
 	public void deleteIntereses(int id) {
-		Query query=entityManager.createNativeQuery("DELETE  * FROM intereses where id_perfil=? ;",Intereses.class);
+		System.out.println("ESTA ES LA CONSULTA Con id -------"+id);
+		Query query=entityManager.createNativeQuery("DELETE FROM intereses where id_perfil=?;");
 		query.setParameter(1, id);
 		query.executeUpdate();
+		System.out.println("EDES^PUESSS -------"+id);
 	}
 }

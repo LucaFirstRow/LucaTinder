@@ -29,6 +29,7 @@ import com.lucatinder.main.modelo.Intereses;
 import com.lucatinder.main.modelo.Materia;
 import com.lucatinder.main.modelo.Perfil;
 import com.lucatinder.main.modelo.User;
+import com.lucatinder.main.service.InteresesServices;
 import com.lucatinder.main.service.MateriaServices;
 import com.lucatinder.main.service.PerfilServices;
 
@@ -52,6 +53,12 @@ public class PerfilController {
 	 */
 	@Autowired
 	private PerfilServices service;
+	/**
+	 * {@value #service} InteresesServices se declara esta variable para
+	 *  ofrecer los servicios
+	 */
+	@Autowired
+	private InteresesServices intersesService;
 	/**
 	 * {@value #service} MateriaServices se declara esta variable para
 	 *  ofrecer los servicios de materia
@@ -287,6 +294,7 @@ public class PerfilController {
 	public String savePerfilEdit(@ModelAttribute("perfil") Perfil p,ModelMap modelo ,@RequestParam("intereses_s") int intereses_s[]) {
 		logger.info("Entra en el Salvar detalles del perfil ");
 		Perfil datosPerfil = p;
+		intersesService.addNuevosIntereses(p.getIdPerfil(), intereses_s);
 		/*
 		Intereses interesesAdd = new Intereses();
 		Set <Intereses> nuevosIntereses = new HashSet<Intereses>();
@@ -299,15 +307,13 @@ public class PerfilController {
 		}*/
 		
 		service.editarPerfil(p);
-		
-		System.out.println("ESTOS SON LOSI INTERESSSS :"+p.getIntereses());
 		try {
 			
 			//Get Listado de materias de un usuario;
 		} catch (Exception e) {
 			return "error";
 		}
-		return "detalles";
+		return "redirect:/perfil/list";
 	}
 
 }
